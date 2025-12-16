@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 9 — Data-Link Layer</title>
-    <meta name="description" content="ملخص Chapter 9 – طبقة ربط البيانات: Nodes, Links, Framing, MAC, ARP" />
+    <title>اختبارات الشبكات — Quiz</title>
+    <meta name="description" content="اختبر معلوماتك في الشبكات — أكثر من 200 سؤال من جميع الفصول" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./quiz-styles.css" />
 </head>
 
 <body>
@@ -60,7 +61,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="./lesson5.html" class="drawer-item active">
+                <a href="./lesson5.html" class="drawer-item">
                     <div class="drawer-item-inner">
                         <span class="drawer-icon">🔀</span>
                         <div class="drawer-item-text">
@@ -96,7 +97,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="./quiz.html" class="drawer-item">
+                <a href="./quiz.html" class="drawer-item active">
                     <div class="drawer-item-inner">
                         <span class="drawer-icon">📝</span>
                         <div class="drawer-item-text">
@@ -122,85 +123,74 @@
             <button id="menuBtn" class="btn menu-btn" type="button" aria-label="القائمة">
                 <span class="menu-icon">☰</span>
             </button>
-            <div class="logo" aria-hidden="true">CH9</div>
+            <div class="logo quiz-logo" aria-hidden="true">📝</div>
             <div class="brandText">
-                <div class="title">Chapter 9 — Data-Link Layer</div>
-                <div class="subtitle">طبقة ربط البيانات: Nodes, Links, Framing, MAC, ARP</div>
+                <div class="title">اختبارات الشبكات</div>
+                <div class="subtitle">أكثر من 200 سؤال — اختبر معلوماتك!</div>
             </div>
         </div>
 
         <div class="actions">
-            <a href="./lesson4.html" class="btn ghost">
+            <a href="./index.html" class="btn ghost">
                 <span class="icon" aria-hidden="true">←</span>
-                <span class="txt">Transmission</span>
+                <span class="txt">الرئيسية</span>
             </a>
             <button id="themeBtn" class="btn ghost" type="button" aria-label="تبديل الوضع">
                 <span class="icon" aria-hidden="true">☾</span>
                 <span class="txt">الوضع</span>
             </button>
-            <button id="resetBtn" class="btn ghost" type="button" aria-label="تصفير التقدّم">
-                <span class="icon" aria-hidden="true">↺</span>
-                <span class="txt">تصفير</span>
-            </button>
         </div>
     </header>
 
-    <main class="layout">
-        <aside class="sidebar">
-            <div class="card searchCard">
-                <label class="label" for="q">ابحث داخل الملخّصات</label>
-                <div class="searchRow">
-                    <input id="q" class="input" type="search" placeholder="مثال: ARP أو MAC أو Frame..."
-                        autocomplete="off" />
-                    <button id="clearBtn" class="btn small" type="button">مسح</button>
-                </div>
-                <div class="hint">نصيحة: اضغط على أي صفحة من القائمة للتفاصيل.</div>
+    <main class="quiz-main">
+        <!-- Chapter Selection -->
+        <section id="chapterSelection" class="chapter-selection">
+            <div class="section-header">
+                <h1 class="section-title">اختر الفصل للاختبار</h1>
+                <p class="section-subtitle">كل فصل يحتوي على مجموعة أسئلة متنوعة — اختبر معلوماتك!</p>
+            </div>
+            <div id="chaptersGrid" class="chapters-grid"></div>
+        </section>
+
+        <!-- Quiz Container -->
+        <section id="quizContainer" class="quiz-container" style="display: none;">
+            <div id="quizHeader" class="quiz-header">
+                <button id="backToChapters" class="btn ghost back-btn">
+                    <span>→</span>
+                    <span>العودة للفصول</span>
+                </button>
+                <h2 id="currentChapterTitle" class="quiz-chapter-title"></h2>
             </div>
 
-            <div class="card pagesCard">
-                <div class="pagesHead">
-                    <div class="label">الصفحات</div>
-                    <div id="counter" class="pill">0</div>
+            <div class="quiz-progress">
+                <div class="quiz-progress-bar">
+                    <div id="quizProgressFill" class="quiz-progress-fill"></div>
                 </div>
-                <div id="pagesList" class="pagesList" role="list"></div>
             </div>
-        </aside>
 
-        <section class="content">
-            <div class="card hero">
-                <div class="heroTop">
-                    <div>
-                        <div id="pageKicker" class="kicker">صفحة</div>
-                        <h1 id="pageTitle" class="h1">اختر صفحة من اليسار</h1>
-                    </div>
-
-                    <div class="navBtns">
-                        <button id="prevBtn" class="btn" type="button">السابق</button>
-                        <button id="nextBtn" class="btn" type="button">التالي</button>
-                    </div>
+            <div id="quizContent" class="quiz-content">
+                <div class="question-card">
+                    <div id="questionCounter" class="question-counter"></div>
+                    <h3 id="questionText" class="question-text"></h3>
+                    <div id="optionsContainer" class="options-container"></div>
+                    <div id="feedback" class="feedback"></div>
+                    <button id="nextBtn" class="btn primary next-btn" style="display: none;">السؤال التالي</button>
                 </div>
+            </div>
 
-                <div class="progressWrap">
-                    <div class="progressMeta">
-                        <span>إجمالي التقدّم</span>
-                        <span id="progressText">0%</span>
+            <div id="finalScore" class="final-score" style="display: none;">
+                <div class="score-card">
+                    <div id="finalScoreText" class="final-score-text"></div>
+                    <div class="score-actions">
+                        <button id="restartQuiz" class="btn primary">إعادة الاختبار</button>
+                        <button id="backFromResults" class="btn ghost">اختيار فصل آخر</button>
                     </div>
-                    <div class="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                        <div id="progressFill" class="progressFill"></div>
-                    </div>
-                </div>
-
-                <div id="summary" class="summary"></div>
-
-                <div class="heroBottom">
-                    <button id="markBtn" class="btn primary" type="button">✔︎ علّمها "مفهومة"</button>
-                    <button id="copyBtn" class="btn ghost" type="button">نسخ الملخص</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="./lesson5.js"></script>
+    <script src="./quiz.js"></script>
 </body>
 
 </html>

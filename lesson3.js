@@ -408,6 +408,216 @@ const PAGES = [
             }
         ],
         keywords: ["Throughput", "Latency", "Jitter", "Propagation", "Transmission time"]
+    },
+
+    {
+        page: 12,
+        title: "طرق التشفير الخطي — Line Encoding Schemes",
+        brief: "كيف نحول البتات لإشارات كهربائية؟",
+        sections: [
+            {
+                h: "ما هو Line Encoding؟",
+                bullets: [
+                    "Line Encoding: تحويل البيانات الرقمية لإشارة رقمية.",
+                    "Digital Data → Digital Signal",
+                    "يحدد كيف نمثل 0 و 1 كإشارات كهربائية.",
+                    "مهم جداً لنقل البيانات عبر الكابلات."
+                ]
+            },
+            {
+                h: "Unipolar Encoding",
+                bullets: [
+                    "يستخدم مستوى جهد واحد (موجب فقط).",
+                    "0 = لا جهد، 1 = جهد موجب.",
+                    "مشكلة: DC Component (مركبة مستمرة) تسبب مشاكل.",
+                    "غير مستخدم عملياً في الشبكات الحديثة."
+                ]
+            },
+            {
+                h: "Polar Encoding — NRZ",
+                bullets: [
+                    "NRZ-L (Level): 0 = موجب، 1 = سالب (أو العكس).",
+                    "NRZ-I (Invert): 1 = انتقال، 0 = بقاء (أو العكس).",
+                    "مشكلة NRZ: سلسلة من 0s أو 1s تفقد التزامن.",
+                    "لا توجد انتقالات = لا توجد ساعة للمزامنة."
+                ]
+            },
+            {
+                h: "Manchester Encoding",
+                bullets: [
+                    "انتقال في منتصف كل Bit — للمزامنة!",
+                    "Manchester: Low→High = 1، High→Low = 0.",
+                    "Differential Manchester: انتقال في البداية = 0.",
+                    "ميزة: Self-clocking (مزامنة ذاتية).",
+                    "عيب: يحتاج ضعف Bandwidth من NRZ."
+                ]
+            }
+        ],
+        keywords: ["Line Encoding", "NRZ", "Manchester", "Unipolar", "Polar", "Self-clocking", "DC Component"]
+    },
+
+    {
+        page: 13,
+        title: "Bipolar و Multi-Level Encoding",
+        brief: "طرق متقدمة للتشفير مع كفاءة أعلى",
+        sections: [
+            {
+                h: "Bipolar AMI (Alternate Mark Inversion)",
+                bullets: [
+                    "يستخدم 3 مستويات: +V، 0، -V.",
+                    "0 = لا جهد (0 volts).",
+                    "1 = تناوب بين +V و -V.",
+                    "ميزة: لا DC Component.",
+                    "مشكلة: سلسلة 0s طويلة = فقدان التزامن."
+                ]
+            },
+            {
+                h: "B8ZS و HDB3",
+                bullets: [
+                    "B8ZS: تستبدل 8 أصفار متتالية برمز خاص.",
+                    "HDB3: تستبدل 4 أصفار متتالية.",
+                    "الهدف: ضمان وجود انتقالات للمزامنة.",
+                    "تُستخدم في خطوط T1/E1."
+                ]
+            },
+            {
+                h: "Multi-Level — MLT-3 و 2B1Q",
+                bullets: [
+                    "MLT-3: 3 مستويات، يتنقل بينها بترتيب.",
+                    "يُستخدم في Fast Ethernet (100BASE-TX).",
+                    "2B1Q: 2 bits تُمثل بـ 1 رمز (4 مستويات).",
+                    "يُستخدم في DSL.",
+                    "كفاءة أعلى: bits أكثر في نفس Bandwidth."
+                ]
+            }
+        ],
+        keywords: ["Bipolar", "AMI", "B8ZS", "HDB3", "MLT-3", "2B1Q", "Multi-Level"]
+    },
+
+    {
+        page: 14,
+        title: "التعديل — Modulation",
+        brief: "تحويل البيانات الرقمية لإشارة تماثلية",
+        sections: [
+            {
+                h: "لماذا نحتاج Modulation؟",
+                bullets: [
+                    "بعض الوسائط تنقل إشارات Analog فقط (الراديو، الهاتف).",
+                    "Digital Data → Analog Signal",
+                    "نُغير خصائص موجة حاملة (Carrier Wave).",
+                    "الموجة الحاملة: إشارة بتردد عالي ثابت."
+                ]
+            },
+            {
+                h: "أنواع التعديل الأساسية",
+                bullets: [
+                    "ASK (Amplitude Shift Keying):",
+                    "   - نُغير السعة (Amplitude) حسب البيانات.",
+                    "   - 0 = سعة منخفضة، 1 = سعة عالية.",
+                    "FSK (Frequency Shift Keying):",
+                    "   - نُغير التردد (Frequency) حسب البيانات.",
+                    "   - 0 = تردد منخفض، 1 = تردد عالي.",
+                    "PSK (Phase Shift Keying):",
+                    "   - نُغير الطور (Phase) حسب البيانات.",
+                    "   - 0 = طور 0°، 1 = طور 180°."
+                ]
+            },
+            {
+                h: "QAM — Quadrature Amplitude Modulation",
+                bullets: [
+                    "يجمع ASK و PSK معاً!",
+                    "نُغير السعة والطور معاً.",
+                    "كفاءة عالية جداً — bits أكثر في كل رمز.",
+                    "يُستخدم في: WiFi، Cable Modems، LTE."
+                ]
+            }
+        ],
+        keywords: ["Modulation", "ASK", "FSK", "PSK", "QAM", "Carrier Wave", "Amplitude", "Frequency", "Phase"]
+    },
+
+    {
+        page: 15,
+        title: "Analog to Digital Conversion",
+        brief: "كيف نحوّل الصوت الطبيعي لبيانات رقمية؟",
+        sections: [
+            {
+                h: "لماذا نحتاج التحويل؟",
+                bullets: [
+                    "الصوت الطبيعي إشارة Analog مستمرة.",
+                    "الكمبيوتر يفهم Digital فقط (0 و 1).",
+                    "التحويل: Analog → Digital باستخدام ADC.",
+                    "ADC = Analog-to-Digital Converter."
+                ]
+            },
+            {
+                h: "PCM — Pulse Code Modulation",
+                bullets: [
+                    "أشهر طريقة للتحويل — 3 خطوات:",
+                    "1. Sampling: أخذ عينات من الإشارة.",
+                    "   - Sampling Rate: عدد العينات/ثانية.",
+                    "   - Nyquist: Rate ≥ 2 × أعلى تردد.",
+                    "2. Quantization: تقريب قيمة العينة لأقرب مستوى.",
+                    "3. Encoding: تحويل المستوى لرقم ثنائي."
+                ]
+            },
+            {
+                h: "مثال: الصوت الهاتفي",
+                bullets: [
+                    "أعلى تردد للصوت = 4000 Hz.",
+                    "Sampling Rate = 8000 Hz (ضعف التردد).",
+                    "8 bits لكل عينة = 256 مستوى.",
+                    "Bit Rate = 8000 × 8 = 64 Kbps.",
+                    "هذا هو معيار PCM للهاتف!"
+                ]
+            }
+        ],
+        keywords: ["PCM", "Sampling", "Quantization", "Encoding", "ADC", "Nyquist", "Bit Rate"]
+    },
+
+    {
+        page: 16,
+        title: "ملخص Physical Layer — القواعد الذهبية",
+        brief: "أهم المفاهيم والمعادلات للحفظ",
+        sections: [
+            {
+                h: "المعادلات الأساسية",
+                bullets: [
+                    "Nyquist (بدون ضوضاء): Bit Rate = 2 × BW × log₂(L)",
+                    "Shannon (مع ضوضاء): Capacity = BW × log₂(1 + SNR)",
+                    "Propagation Time = Distance / Speed",
+                    "Transmission Time = Message Size / Bandwidth",
+                    "SNR(dB) = 10 × log₁₀(Signal/Noise)"
+                ]
+            },
+            {
+                h: "أنواع الإشارات",
+                bullets: [
+                    "Analog: مستمرة، قيم لا نهائية.",
+                    "Digital: متقطعة، قيم محددة.",
+                    "Periodic: تتكرر بنمط ثابت.",
+                    "Non-periodic: لا تتكرر."
+                ]
+            },
+            {
+                h: "طرق التشفير — للحفظ",
+                bullets: [
+                    "NRZ-L: مستوى يحدد قيمة البت.",
+                    "NRZ-I: انتقال يحدد 1.",
+                    "Manchester: انتقال في المنتصف (Self-clocking).",
+                    "AMI: تناوب +V/-V للـ 1s، صفر للـ 0s."
+                ]
+            },
+            {
+                h: "طرق التعديل — للحفظ",
+                bullets: [
+                    "ASK: تغيير السعة.",
+                    "FSK: تغيير التردد.",
+                    "PSK: تغيير الطور.",
+                    "QAM: تغيير السعة والطور معاً."
+                ]
+            }
+        ],
+        keywords: ["Summary", "Formulas", "Nyquist", "Shannon", "Encoding", "Modulation", "Physical Layer"]
     }
 ];
 

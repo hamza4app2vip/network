@@ -321,6 +321,253 @@ const PAGES = [
             }
         ],
         keywords: ["X.400", "FTAM", "X.500", "Directory Services", "ملخص"]
+    },
+
+    {
+        page: 11,
+        title: "بروتوكولات كل طبقة — Layer Protocols",
+        brief: "أهم البروتوكولات المستخدمة في كل طبقة من طبقات OSI",
+        sections: [
+            {
+                h: "Layer 1 - Physical Protocols",
+                bullets: [
+                    "RS-232: واجهة تسلسلية للاتصال (Serial Communication).",
+                    "USB: الناقل التسلسلي العام (Universal Serial Bus).",
+                    "Ethernet Physical: معايير الكابلات (10BASE-T, 100BASE-TX).",
+                    "DSL: خط المشترك الرقمي (Digital Subscriber Line).",
+                    "Bluetooth PHY: الطبقة الفيزيائية للبلوتوث."
+                ]
+            },
+            {
+                h: "Layer 2 - Data-Link Protocols",
+                bullets: [
+                    "Ethernet (IEEE 802.3): الأكثر شيوعاً في الشبكات المحلية.",
+                    "WiFi (IEEE 802.11): الشبكات اللاسلكية.",
+                    "PPP (Point-to-Point Protocol): للاتصالات المباشرة.",
+                    "HDLC: بروتوكول التحكم في الربط عالي المستوى.",
+                    "ARP: يربط IP Address بـ MAC Address."
+                ]
+            },
+            {
+                h: "Layer 3 - Network Protocols",
+                bullets: [
+                    "IP (Internet Protocol): أساس التوجيه في الإنترنت.",
+                    "ICMP: رسائل التحكم والأخطاء (مثل Ping).",
+                    "OSPF/BGP: بروتوكولات التوجيه (Routing Protocols).",
+                    "IPsec: تشفير على مستوى الشبكة."
+                ]
+            },
+            {
+                h: "Layer 4-7 Protocols",
+                bullets: [
+                    "Layer 4: TCP (موثوق) و UDP (سريع).",
+                    "Layer 5: NetBIOS, RPC (Remote Procedure Call).",
+                    "Layer 6: SSL/TLS, JPEG, MPEG (ترميز وتشفير).",
+                    "Layer 7: HTTP, FTP, SMTP, DNS, DHCP."
+                ]
+            }
+        ],
+        keywords: ["RS-232", "Ethernet", "WiFi", "IP", "TCP", "UDP", "HTTP", "ARP", "ICMP"]
+    },
+
+    {
+        page: 12,
+        title: "الفرق بين Connection-Oriented و Connectionless",
+        brief: "متى نحتاج اتصال موثوق ومتى نحتاج السرعة؟",
+        sections: [
+            {
+                h: "Connection-Oriented (موجه الاتصال)",
+                bullets: [
+                    "يُنشئ اتصالاً قبل إرسال البيانات (Handshaking).",
+                    "يضمن: ترتيب الوصول، عدم الفقدان، كشف الأخطاء.",
+                    "أبطأ لكنه موثوق.",
+                    "مثال: TCP — المكالمة الهاتفية (تتصل أولاً ثم تتحدث).",
+                    "استخدامات: نقل الملفات، البريد، صفحات الويب."
+                ]
+            },
+            {
+                h: "Connectionless (بدون اتصال)",
+                bullets: [
+                    "يُرسل البيانات مباشرة بدون إنشاء اتصال مسبق.",
+                    "لا يضمن الوصول أو الترتيب.",
+                    "أسرع لكنه أقل موثوقية.",
+                    "مثال: UDP — البريد العادي (ترسل بدون تأكيد).",
+                    "استخدامات: البث المباشر، الألعاب، DNS."
+                ]
+            },
+            {
+                h: "Three-Way Handshake (TCP)",
+                bullets: [
+                    "طريقة TCP لإنشاء اتصال موثوق:",
+                    "1. SYN: العميل يطلب الاتصال.",
+                    "2. SYN-ACK: الخادم يوافق ويؤكد.",
+                    "3. ACK: العميل يؤكد الموافقة.",
+                    "الآن الاتصال جاهز لنقل البيانات!"
+                ]
+            }
+        ],
+        keywords: ["Connection-Oriented", "Connectionless", "TCP", "UDP", "Handshake", "SYN", "ACK", "Reliable"]
+    },
+
+    {
+        page: 13,
+        title: "Multiplexing و Demultiplexing",
+        brief: "كيف تتعامل طبقة النقل مع عدة تطبيقات معاً؟",
+        sections: [
+            {
+                h: "ما هو Multiplexing؟",
+                bullets: [
+                    "Multiplexing: دمج بيانات من عدة تطبيقات في تيار واحد.",
+                    "يحدث عند المرسل — في طبقة النقل.",
+                    "كل تطبيق له Port Number فريد.",
+                    "البيانات تُجمع وتُرسل عبر اتصال شبكة واحد."
+                ]
+            },
+            {
+                h: "ما هو Demultiplexing؟",
+                bullets: [
+                    "Demultiplexing: فصل البيانات وتوزيعها على التطبيقات الصحيحة.",
+                    "يحدث عند المستقبل — في طبقة النقل.",
+                    "تقرأ Port Number الوجهة من الـ Segment.",
+                    "توجّه البيانات للتطبيق المناسب."
+                ]
+            },
+            {
+                h: "مثال عملي",
+                bullets: [
+                    "جهازك يشغّل متصفح (Port 80) + Zoom (Port 8801) + تيليجرام.",
+                    "كل تطبيق يُرسل ويستقبل بيانات.",
+                    "Multiplexing يجمعها للإرسال.",
+                    "عند الاستقبال، Demultiplexing يوزعها للتطبيق الصحيح."
+                ]
+            }
+        ],
+        keywords: ["Multiplexing", "Demultiplexing", "Port Number", "Transport Layer", "Socket"]
+    },
+
+    {
+        page: 14,
+        title: "Peer-to-Peer Communication",
+        brief: "التواصل المنطقي بين الطبقات المتناظرة",
+        sections: [
+            {
+                h: "ما معنى Peer-to-Peer في OSI؟",
+                bullets: [
+                    "كل طبقة في جهاز تتواصل 'منطقياً' مع نفس الطبقة في الجهاز الآخر.",
+                    "التواصل الفعلي يمر عبر الطبقات السفلى.",
+                    "لكن كل طبقة 'تتخيل' أنها تتحدث مباشرة لنظيرتها.",
+                    "هذا يُسهّل التصميم — كل طبقة مستقلة!"
+                ]
+            },
+            {
+                h: "مثال: التواصل عبر الطبقات",
+                bullets: [
+                    "Application A تتواصل 'منطقياً' مع Application B.",
+                    "البيانات تنزل: App → Transport → Network → Data-Link → Physical.",
+                    "تنتقل فيزيائياً عبر الوسط الناقل.",
+                    "تصعد في الجهاز الآخر: Physical → Data-Link → Network → Transport → App.",
+                    "كل طبقة تقرأ Header الخاص بها فقط!"
+                ]
+            },
+            {
+                h: "Service Access Point (SAP)",
+                bullets: [
+                    "SAP: نقطة الوصول بين طبقتين متجاورتين.",
+                    "مثل 'الباب' بين الطبقتين.",
+                    "الطبقة العليا تطلب خدمة من الطبقة السفلى عبر SAP.",
+                    "مثال: TSAP (Transport SAP), NSAP (Network SAP)."
+                ]
+            }
+        ],
+        keywords: ["Peer-to-Peer", "SAP", "Service Access Point", "Logical Communication", "Header"]
+    },
+
+    {
+        page: 15,
+        title: "Flow Control و Error Control",
+        brief: "كيف تضمن الشبكة عدم إغراق المستقبل وسلامة البيانات؟",
+        sections: [
+            {
+                h: "Flow Control (التحكم بالتدفق)",
+                bullets: [
+                    "المشكلة: المرسل قد يكون أسرع من المستقبل!",
+                    "الحل: آلية Flow Control تنظم سرعة الإرسال.",
+                    "Stop-and-Wait: انتظر تأكيد قبل الإرسال التالي.",
+                    "Sliding Window: أرسل عدة إطارات ثم انتظر التأكيدات.",
+                    "يُستخدم في Data-Link (إطارات) و Transport (مقاطع)."
+                ]
+            },
+            {
+                h: "Error Control (التحكم بالأخطاء)",
+                bullets: [
+                    "الهدف: اكتشاف الأخطاء وتصحيحها أو طلب إعادة الإرسال.",
+                    "Error Detection: كشف الخطأ (CRC, Checksum).",
+                    "ARQ (Automatic Repeat Request): طلب إعادة الإرسال تلقائياً.",
+                    "ACK: تأكيد استلام صحيح.",
+                    "NAK: تأكيد سلبي — هناك خطأ أعد الإرسال!"
+                ]
+            },
+            {
+                h: "Congestion Control (التحكم بالازدحام)",
+                bullets: [
+                    "المشكلة: الشبكة مزدحمة — كثير من البيانات!",
+                    "الأعراض: تأخير عالي، فقدان حزم.",
+                    "الحل: تقليل معدل الإرسال عند اكتشاف الازدحام.",
+                    "TCP يستخدم: Slow Start, Congestion Avoidance.",
+                    "الهدف: توازن بين السرعة وعدم إغراق الشبكة."
+                ]
+            }
+        ],
+        keywords: ["Flow Control", "Error Control", "Congestion Control", "ARQ", "ACK", "NAK", "Sliding Window"]
+    },
+
+    {
+        page: 16,
+        title: "ملخص OSI — القواعد الذهبية",
+        brief: "أهم النقاط للحفظ والفهم في نموذج OSI",
+        sections: [
+            {
+                h: "الطبقات السبعة — للحفظ السريع",
+                bullets: [
+                    "من الأسفل للأعلى: 'Please Do Not Throw Sausage Pizza Away'",
+                    "Physical, Data-Link, Network, Transport, Session, Presentation, Application.",
+                    "Layer 1-3: Media Layers (الوسط والنقل).",
+                    "Layer 4-7: Host Layers (التطبيقات والخدمات)."
+                ]
+            },
+            {
+                h: "PDU لكل طبقة",
+                bullets: [
+                    "Physical: Bits (بتات).",
+                    "Data-Link: Frame (إطار).",
+                    "Network: Packet (حزمة).",
+                    "Transport: Segment (مقطع).",
+                    "Session/Presentation/Application: Data (بيانات)."
+                ]
+            },
+            {
+                h: "وظائف رئيسية لكل طبقة",
+                bullets: [
+                    "1. Physical: تحويل bits ↔ signals.",
+                    "2. Data-Link: Framing, MAC, Error Detection.",
+                    "3. Network: Routing, Logical Addressing (IP).",
+                    "4. Transport: Segmentation, Flow Control, Reliability.",
+                    "5. Session: Dialog Control, Synchronization.",
+                    "6. Presentation: Encoding, Encryption, Compression.",
+                    "7. Application: User Interface, Network Services."
+                ]
+            },
+            {
+                h: "أجهزة كل طبقة",
+                bullets: [
+                    "Layer 1: Hub, Repeater, Cables.",
+                    "Layer 2: Switch, Bridge (MAC Address).",
+                    "Layer 3: Router (IP Address).",
+                    "Layer 4+: الأجهزة تعمل على مستوى البرمجيات."
+                ]
+            }
+        ],
+        keywords: ["Summary", "PDU", "Layers", "Devices", "OSI", "Functions", "Mnemonic"]
     }
 ];
 

@@ -592,6 +592,164 @@ const PAGES = [
             }
         ],
         keywords: ["مزايا", "عيوب", "Bandwidth", "أمان", "تكلفة", "Simplex"]
+    },
+
+    {
+        page: 19,
+        title: "الوسائط اللاسلكية — Unguided Media",
+        brief: "موجات الراديو والميكروويف والأشعة تحت الحمراء",
+        sections: [
+            {
+                h: "خصائص الوسط اللاسلكي",
+                bullets: [
+                    "الإشارة تنتقل في الفضاء الحر (الهواء).",
+                    "لا تحتاج كابلات — مرونة أكثر.",
+                    "تتأثر بالعوائق والتداخل والطقس.",
+                    "أقل أماناً — يمكن اعتراض الإشارة."
+                ]
+            },
+            {
+                h: "Radio Waves (موجات الراديو)",
+                bullets: [
+                    "التردد: 3 KHz - 1 GHz.",
+                    "Omnidirectional: تنتشر في كل الاتجاهات.",
+                    "تخترق الجدران والعوائق.",
+                    "استخدامات: FM Radio, WiFi, Bluetooth, Cellular.",
+                    "عيب: عرضة للتداخل مع إشارات أخرى."
+                ]
+            },
+            {
+                h: "Microwaves (الموجات الدقيقة)",
+                bullets: [
+                    "التردد: 1 GHz - 300 GHz.",
+                    "Unidirectional: اتجاه واحد محدد.",
+                    "تحتاج خط رؤية مباشر (Line of Sight).",
+                    "استخدامات: Satellite, Cellular Backhaul, Radar.",
+                    "Terrestrial: بين الأبراج الأرضية.",
+                    "Satellite: عبر الأقمار الصناعية."
+                ]
+            }
+        ],
+        keywords: ["Unguided Media", "Radio Waves", "Microwaves", "Omnidirectional", "Line of Sight"]
+    },
+
+    {
+        page: 20,
+        title: "الأقمار الصناعية — Satellite Communication",
+        brief: "أنواع المدارات والتأخير والتطبيقات",
+        sections: [
+            {
+                h: "كيف يعمل القمر الصناعي؟",
+                bullets: [
+                    "يستقبل الإشارة من الأرض (Uplink).",
+                    "يضخمها ويعيد إرسالها (Downlink).",
+                    "يغطي مساحات شاسعة من الأرض.",
+                    "الإشارة تذهب وترجع — تأخير ملموس!"
+                ]
+            },
+            {
+                h: "أنواع المدارات",
+                bullets: [
+                    "GEO (Geostationary): ارتفاع 35,786 كم.",
+                    "   - ثابت فوق نقطة واحدة، تأخير ~250ms.",
+                    "   - 3 أقمار تغطي الأرض كلها.",
+                    "MEO (Medium Earth Orbit): 2,000-35,000 كم.",
+                    "   - تأخير أقل، يحتاج أقمار أكثر.",
+                    "LEO (Low Earth Orbit): 200-2,000 كم.",
+                    "   - تأخير قليل جداً، يحتاج عشرات الأقمار.",
+                    "   - مثال: Starlink."
+                ]
+            },
+            {
+                h: "التطبيقات",
+                bullets: [
+                    "البث التلفزيوني (Satellite TV).",
+                    "الإنترنت في المناطق النائية.",
+                    "الاتصالات البحرية والجوية.",
+                    "نظام GPS."
+                ]
+            }
+        ],
+        keywords: ["Satellite", "GEO", "MEO", "LEO", "Uplink", "Downlink", "Starlink", "GPS"]
+    },
+
+    {
+        page: 21,
+        title: "Infrared — الأشعة تحت الحمراء",
+        brief: "اتصال قصير المدى يحتاج رؤية مباشرة",
+        sections: [
+            {
+                h: "خصائص الأشعة تحت الحمراء",
+                bullets: [
+                    "التردد: 300 GHz - 400 THz.",
+                    "تحتاج Line of Sight (رؤية مباشرة).",
+                    "لا تخترق الجدران — ميزة أمنية!",
+                    "مسافة قصيرة جداً (أمتار قليلة)."
+                ]
+            },
+            {
+                h: "التطبيقات",
+                bullets: [
+                    "أجهزة التحكم عن بعد (Remote Control).",
+                    "IrDA: نقل ملفات بين الأجهزة القريبة.",
+                    "لوحات المفاتيح اللاسلكية القديمة.",
+                    "استُبدلت بـ Bluetooth و WiFi."
+                ]
+            },
+            {
+                h: "مقارنة: IR vs Bluetooth vs WiFi",
+                bullets: [
+                    "IR: رؤية مباشرة، مسافة قصيرة، لا تداخل.",
+                    "Bluetooth: بدون رؤية مباشرة، 10-100 متر.",
+                    "WiFi: مسافة أطول، سرعة أعلى، تداخل أكثر."
+                ]
+            }
+        ],
+        keywords: ["Infrared", "IrDA", "Line of Sight", "Remote Control", "Bluetooth"]
+    },
+
+    {
+        page: 22,
+        title: "ملخص Transmission Media — للحفظ",
+        brief: "مقارنة شاملة بين جميع وسائط النقل",
+        sections: [
+            {
+                h: "Guided Media — ملخص",
+                bullets: [
+                    "Twisted Pair: رخيص، 100m، EMI عالي، شبكات محلية.",
+                    "Coaxial: أفضل حماية، TV/Internet القديم.",
+                    "Fiber Optic: أسرع، أبعد، أغلى، مناعة EMI."
+                ]
+            },
+            {
+                h: "Unguided Media — ملخص",
+                bullets: [
+                    "Radio Waves: omnidirectional، تخترق الجدران.",
+                    "Microwaves: unidirectional، Line of Sight.",
+                    "Satellite: تغطية واسعة، تأخير عالي.",
+                    "Infrared: قصير المدى، رؤية مباشرة."
+                ]
+            },
+            {
+                h: "جدول مقارنة سريع",
+                bullets: [
+                    "السرعة: Fiber > Coax > TP > Wireless",
+                    "التكلفة: TP < Coax < Wireless < Fiber",
+                    "المسافة: Satellite > Fiber > Coax > TP",
+                    "مقاومة EMI: Fiber > Coax > STP > UTP"
+                ]
+            },
+            {
+                h: "نصائح امتحانية",
+                bullets: [
+                    "احفظ CAT Categories و سرعاتها.",
+                    "افهم الفرق بين UTP و STP.",
+                    "تذكر: Fiber = ضوء، Copper = كهرباء.",
+                    "Wireless = مرونة، Wired = موثوقية."
+                ]
+            }
+        ],
+        keywords: ["Summary", "Comparison", "Guided", "Unguided", "TP", "Coax", "Fiber", "Wireless"]
     }
 ];
 

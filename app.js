@@ -508,6 +508,252 @@ const PAGES = [
             }
         ],
         keywords: ["DSL", "Filter", "Circuit-switched", "Packet-switched", "Wireless"]
+    },
+
+    {
+        page: 17,
+        title: "البروتوكولات — Protocols بالتفصيل",
+        brief: "ما هو البروتوكول؟ عناصره ولماذا هو ضروري؟",
+        sections: [
+            {
+                h: "تعريف البروتوكول — Protocol Definition",
+                bullets: [
+                    "Protocol: مجموعة قواعد متفق عليها تحكم عملية الاتصال.",
+                    "يحدد: ماذا يُرسل؟ كيف يُرسل؟ ومتى يُرسل؟",
+                    "بدون بروتوكول موحد: الأجهزة لا تفهم بعضها!",
+                    "مثال: HTTP للويب، SMTP للبريد، FTP للملفات."
+                ]
+            },
+            {
+                h: "عناصر البروتوكول — Key Elements",
+                bullets: [
+                    "1. Syntax (التركيب): شكل البيانات وترتيبها.",
+                    "   - مثال: ترتيب حقول العنوان والبيانات في الرسالة.",
+                    "2. Semantics (الدلالة): معنى كل جزء من الرسالة.",
+                    "   - مثال: هل هذا الحقل يعني عنوان المصدر أم الوجهة؟",
+                    "3. Timing (التوقيت): متى يُرسل؟ وكم السرعة؟",
+                    "   - مثال: معدل الإرسال وزمن الانتظار قبل إعادة المحاولة."
+                ]
+            },
+            {
+                h: "أهمية البروتوكولات في الشبكات",
+                bullets: [
+                    "تضمن التوافق (Interoperability) بين أجهزة مختلفة.",
+                    "تحدد آليات كشف الأخطاء وتصحيحها.",
+                    "تنظم تدفق البيانات (Flow Control).",
+                    "تحدد كيفية بدء وإنهاء الاتصال."
+                ]
+            }
+        ],
+        keywords: ["Protocol", "Syntax", "Semantics", "Timing", "HTTP", "SMTP", "FTP", "Interoperability"]
+    },
+
+    {
+        page: 18,
+        title: "المعايير — Standards",
+        brief: "لماذا نحتاج معايير؟ ومن يضعها؟",
+        sections: [
+            {
+                h: "أهمية المعايير — Why Standards?",
+                bullets: [
+                    "Standards (المعايير): قواعد رسمية موحدة يلتزم بها الجميع.",
+                    "تضمن التوافق بين منتجات شركات مختلفة.",
+                    "تخلق سوقًا أكبر وتخفض التكلفة (منافسة).",
+                    "تحمي المستخدم من الاحتكار (Vendor Lock-in)."
+                ]
+            },
+            {
+                h: "أنواع المعايير",
+                bullets: [
+                    "De Facto Standards (معايير فعلية):",
+                    "   - انتشرت بالسوق بدون موافقة رسمية.",
+                    "   - مثال: بروتوكولات TCP/IP انتشرت قبل توحيدها رسمياً.",
+                    "De Jure Standards (معايير قانونية):",
+                    "   - تُعتمد من هيئات رسمية.",
+                    "   - مثال: معايير ISO، IEEE."
+                ]
+            },
+            {
+                h: "المنظمات المُصدرة للمعايير",
+                bullets: [
+                    "ISO: المنظمة الدولية للمعايير (OSI Model).",
+                    "IEEE: معهد مهندسي الكهرباء والإلكترونيات (Ethernet, WiFi).",
+                    "IETF: فريق هندسة الإنترنت (TCP/IP, HTTP).",
+                    "ITU: الاتحاد الدولي للاتصالات (معايير الهاتف).",
+                    "W3C: رابطة الويب العالمية (HTML, CSS)."
+                ]
+            }
+        ],
+        keywords: ["Standards", "De Facto", "De Jure", "ISO", "IEEE", "IETF", "ITU", "W3C"]
+    },
+
+    {
+        page: 19,
+        title: "TCP/IP Model — النموذج العملي",
+        brief: "الفرق بين OSI و TCP/IP ولماذا TCP/IP أكثر استخدامًا",
+        sections: [
+            {
+                h: "ما هو TCP/IP؟",
+                bullets: [
+                    "TCP/IP: مجموعة بروتوكولات تشغّل الإنترنت فعليًا.",
+                    "طُوّر قبل OSI وأثبت نجاحه عمليًا.",
+                    "يتكون من 4 أو 5 طبقات (حسب التصنيف).",
+                    "OSI = نظري للتعليم، TCP/IP = عملي للتشغيل."
+                ]
+            },
+            {
+                h: "طبقات TCP/IP (النموذج المبسط)",
+                bullets: [
+                    "1. Network Access Layer: تُعادل Physical + Data-Link.",
+                    "2. Internet Layer: تُعادل Network Layer (IP).",
+                    "3. Transport Layer: TCP أو UDP.",
+                    "4. Application Layer: تُعادل Session + Presentation + Application."
+                ]
+            },
+            {
+                h: "مقارنة OSI و TCP/IP",
+                bullets: [
+                    "OSI: 7 طبقات، نظري، طُوّر بعد TCP/IP.",
+                    "TCP/IP: 4-5 طبقات، عملي، يشغّل الإنترنت.",
+                    "OSI يُستخدم للتدريس والفهم.",
+                    "TCP/IP يُستخدم في التطبيق الفعلي.",
+                    "كلاهما يستخدم مفهوم الطبقات (Layering)."
+                ]
+            }
+        ],
+        keywords: ["TCP/IP", "OSI", "Internet Layer", "Transport Layer", "Application Layer", "IP", "TCP", "UDP"]
+    },
+
+    {
+        page: 20,
+        title: "عناوين الشبكة — Addressing",
+        brief: "أنواع العناوين ولماذا نحتاج أكثر من نوع",
+        sections: [
+            {
+                h: "لماذا نحتاج عناوين؟",
+                bullets: [
+                    "العنوان يحدد هوية الجهاز أو التطبيق بدقة.",
+                    "بدون عنوان: لا يمكن توصيل الرسالة للوجهة الصحيحة!",
+                    "الشبكة تستخدم أنواعًا مختلفة من العناوين."
+                ]
+            },
+            {
+                h: "أنواع العناوين — Address Types",
+                bullets: [
+                    "1. Physical Address (MAC Address):",
+                    "   - عنوان فيزيائي محفور في كرت الشبكة.",
+                    "   - 48 bit (6 bytes)، مثال: 00:1A:2B:3C:4D:5E",
+                    "   - يُستخدم في الشبكة المحلية (LAN).",
+                    "2. Logical Address (IP Address):",
+                    "   - عنوان منطقي يمكن تغييره.",
+                    "   - IPv4: 32 bit (مثال: 192.168.1.1).",
+                    "   - IPv6: 128 bit (أحدث وأطول).",
+                    "   - يُستخدم للتوجيه (Routing) بين الشبكات.",
+                    "3. Port Number:",
+                    "   - يحدد التطبيق داخل الجهاز.",
+                    "   - 16 bit (0-65535).",
+                    "   - مثال: HTTP = 80، HTTPS = 443."
+                ]
+            },
+            {
+                h: "تشبيه توضيحي",
+                bullets: [
+                    "IP Address = عنوان المبنى (الشارع والمنطقة).",
+                    "MAC Address = رقم الشقة داخل المبنى.",
+                    "Port Number = اسم الشخص داخل الشقة.",
+                    "كل مستوى ضروري لتوصيل الرسالة بدقة!"
+                ]
+            }
+        ],
+        keywords: ["MAC Address", "IP Address", "Port Number", "IPv4", "IPv6", "Physical Address", "Logical Address"]
+    },
+
+    {
+        page: 21,
+        title: "Encapsulation و De-encapsulation",
+        brief: "كيف تُغلّف البيانات وتُفك عند الإرسال والاستقبال",
+        sections: [
+            {
+                h: "ما هو Encapsulation؟",
+                bullets: [
+                    "Encapsulation (التغليف): إضافة معلومات تحكم للبيانات.",
+                    "كل طبقة تضيف Header (وأحياناً Trailer) خاص بها.",
+                    "مثل وضع رسالة في ظرف، ثم الظرف في صندوق، ثم الصندوق في شاحنة!",
+                    "البيانات تنزل من الطبقات العليا للسفلى وتُغلّف في كل مرحلة."
+                ]
+            },
+            {
+                h: "وحدات البيانات — PDU (Protocol Data Unit)",
+                bullets: [
+                    "كل طبقة تُسمي وحدة بياناتها باسم مختلف:",
+                    "   - Application/Presentation/Session: Data (بيانات).",
+                    "   - Transport: Segment (مقطع).",
+                    "   - Network: Packet (حزمة).",
+                    "   - Data-Link: Frame (إطار).",
+                    "   - Physical: Bits (بتات)."
+                ]
+            },
+            {
+                h: "De-encapsulation (فك التغليف)",
+                bullets: [
+                    "العملية العكسية عند الاستقبال.",
+                    "كل طبقة تقرأ Header الخاص بها وتزيله.",
+                    "تمرر البيانات للطبقة الأعلى.",
+                    "النتيجة: استعادة البيانات الأصلية التي أرسلها التطبيق."
+                ]
+            }
+        ],
+        keywords: ["Encapsulation", "De-encapsulation", "PDU", "Header", "Trailer", "Segment", "Packet", "Frame", "Bits"]
+    },
+
+    {
+        page: 22,
+        title: "ملخص Chapter 1 — المصطلحات الأساسية",
+        brief: "جميع المفاهيم والمصطلحات الهامة للحفظ",
+        sections: [
+            {
+                h: "المصطلحات الأساسية — Essential Terms",
+                bullets: [
+                    "Data: التمثيل الخام للمعلومات (أرقام، حروف، رموز).",
+                    "Information: بيانات لها معنى وسياق.",
+                    "Protocol: قواعد الاتصال المتفق عليها.",
+                    "Bandwidth: أقصى سعة نقل للقناة.",
+                    "Throughput: كمية البيانات المنقولة فعليًا.",
+                    "Latency/Delay: زمن التأخير في وصول البيانات.",
+                    "Jitter: التذبذب في زمن وصول الحزم."
+                ]
+            },
+            {
+                h: "أجهزة الشبكة — Network Devices",
+                bullets: [
+                    "Router: يوجّه الحزم بين الشبكات (Layer 3).",
+                    "Switch: يربط الأجهزة في نفس الشبكة (Layer 2).",
+                    "Hub: يبث لجميع الأجهزة (Layer 1).",
+                    "Modem: يحوّل Analog ↔ Digital."
+                ]
+            },
+            {
+                h: "أنواع الشبكات والاتصالات",
+                bullets: [
+                    "LAN: شبكة محلية (مكتب/مبنى).",
+                    "WAN: شبكة واسعة (مدينة/دولة/العالم).",
+                    "MAN: شبكة تغطي مدينة.",
+                    "Simplex: اتجاه واحد.",
+                    "Half-Duplex: اتجاهان بالتناوب.",
+                    "Full-Duplex: اتجاهان معًا."
+                ]
+            },
+            {
+                h: "الطوبولوجيات — Topologies",
+                bullets: [
+                    "Mesh: كل جهاز متصل بالجميع (موثوق لكن مكلف).",
+                    "Star: كل الأجهزة متصلة بمركز (Hub/Switch).",
+                    "Bus: كابل واحد مشترك (بسيط لكن هش).",
+                    "Ring: حلقة مغلقة (Token للتحكم)."
+                ]
+            }
+        ],
+        keywords: ["Summary", "Terms", "Devices", "Topologies", "LAN", "WAN", "Router", "Switch", "Protocol"]
     }
 ];
 

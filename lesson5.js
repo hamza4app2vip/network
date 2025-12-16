@@ -454,6 +454,166 @@ const PAGES = [
             }
         ],
         keywords: ["ARP", "Address Resolution Protocol", "ARP Request", "ARP Reply", "Broadcast", "Cache", "Mapping"]
+    },
+
+    {
+        page: 13,
+        title: "HDLC — High-Level Data Link Control",
+        brief: "بروتوكول أساسي للاتصالات Point-to-Point",
+        sections: [
+            {
+                h: "ما هو HDLC؟",
+                bullets: [
+                    "High-Level Data Link Control — بروتوكول من ISO.",
+                    "Bit-oriented Protocol — يتعامل مع البتات لا الأحرف.",
+                    "يُستخدم في اتصالات Point-to-Point.",
+                    "أساس لبروتوكولات أخرى مثل PPP و LAPB."
+                ]
+            },
+            {
+                h: "أنماط الاتصال في HDLC",
+                bullets: [
+                    "NRM (Normal Response Mode): Secondary لا ترسل إلا بإذن Primary.",
+                    "ABM (Asynchronous Balanced Mode): كلا الطرفين متساويان.",
+                    "ARM (Asynchronous Response Mode): Secondary ترسل بدون إذن."
+                ]
+            },
+            {
+                h: "هيكل Frame في HDLC",
+                bullets: [
+                    "Flag: 01111110 — بداية ونهاية الإطار.",
+                    "Address: عنوان الوجهة.",
+                    "Control: نوع الإطار والتحكم.",
+                    "Information: البيانات (اختياري).",
+                    "FCS: Frame Check Sequence للكشف عن الأخطاء.",
+                    "Bit Stuffing: إضافة 0 بعد خمس 1s متتالية."
+                ]
+            }
+        ],
+        keywords: ["HDLC", "Bit-oriented", "NRM", "ABM", "Flag", "FCS", "Bit Stuffing"]
+    },
+
+    {
+        page: 14,
+        title: "PPP — Point-to-Point Protocol",
+        brief: "البروتوكول الأكثر استخداماً للاتصالات المباشرة",
+        sections: [
+            {
+                h: "ما هو PPP؟",
+                bullets: [
+                    "Point-to-Point Protocol — للاتصالات المباشرة.",
+                    "يُستخدم في: DSL, Dial-up, VPN Tunnels.",
+                    "يدعم عدة بروتوكولات Network Layer (IP, IPX).",
+                    "يوفر: Authentication, Encryption, Compression."
+                ]
+            },
+            {
+                h: "مكونات PPP",
+                bullets: [
+                    "LCP (Link Control Protocol): إنشاء وإنهاء الاتصال.",
+                    "NCP (Network Control Protocol): تهيئة بروتوكولات الشبكة.",
+                    "Authentication: PAP (نص عادي) أو CHAP (مشفر).",
+                    "Multilink PPP: دمج عدة روابط لزيادة السرعة."
+                ]
+            },
+            {
+                h: "هيكل PPP Frame",
+                bullets: [
+                    "Flag: 01111110 — مثل HDLC.",
+                    "Address: دائماً 11111111 (Broadcast).",
+                    "Control: دائماً 00000011 (Unnumbered).",
+                    "Protocol: نوع البيانات المحمولة.",
+                    "Payload: البيانات (حتى 1500 bytes).",
+                    "FCS: 2 أو 4 bytes للكشف عن الأخطاء."
+                ]
+            }
+        ],
+        keywords: ["PPP", "LCP", "NCP", "PAP", "CHAP", "DSL", "VPN", "Authentication"]
+    },
+
+    {
+        page: 15,
+        title: "Ethernet Frame Format — تفاصيل",
+        brief: "هيكل إطار Ethernet بالتفصيل",
+        sections: [
+            {
+                h: "Ethernet Frame Fields",
+                bullets: [
+                    "Preamble: 7 bytes (10101010...) — للمزامنة.",
+                    "SFD: 1 byte (10101011) — بداية الإطار.",
+                    "Destination MAC: 6 bytes — عنوان الوجهة.",
+                    "Source MAC: 6 bytes — عنوان المصدر.",
+                    "Type/Length: 2 bytes — نوع البروتوكول أو الطول.",
+                    "Data: 46-1500 bytes — الحمولة.",
+                    "FCS: 4 bytes — CRC-32 للكشف عن الأخطاء."
+                ]
+            },
+            {
+                h: "قيود حجم الإطار",
+                bullets: [
+                    "Minimum Frame Size: 64 bytes (بدون Preamble/SFD).",
+                    "Maximum Frame Size: 1518 bytes.",
+                    "Minimum Data: 46 bytes — يُضاف Padding إذا أقل.",
+                    "Maximum Data: 1500 bytes — MTU."
+                ]
+            },
+            {
+                h: "لماذا Minimum 64 bytes؟",
+                bullets: [
+                    "CSMA/CD يحتاج وقت للكشف عن التصادم.",
+                    "الإطار يجب أن يكون طويلاً كفاية للكشف.",
+                    "إذا كان أقصر، قد ينتهي قبل اكتشاف التصادم.",
+                    "64 bytes تضمن كشف التصادم في كل الحالات."
+                ]
+            }
+        ],
+        keywords: ["Ethernet Frame", "Preamble", "SFD", "FCS", "CRC-32", "MTU", "Padding"]
+    },
+
+    {
+        page: 16,
+        title: "ملخص Data-Link Layer — للحفظ",
+        brief: "أهم المفاهيم والمصطلحات للمراجعة السريعة",
+        sections: [
+            {
+                h: "الوظائف الأساسية",
+                bullets: [
+                    "Framing: تقسيم البيانات لإطارات.",
+                    "Addressing: عنونة MAC للتوصيل المحلي.",
+                    "Error Detection: كشف الأخطاء (CRC).",
+                    "Flow Control: منع إغراق المستقبل.",
+                    "Media Access: تنظيم الوصول للوسط المشترك."
+                ]
+            },
+            {
+                h: "أنواع العناوين",
+                bullets: [
+                    "Unicast: لجهاز واحد — ثاني رقم Even.",
+                    "Multicast: لمجموعة — ثاني رقم Odd.",
+                    "Broadcast: للجميع — FF:FF:FF:FF:FF:FF."
+                ]
+            },
+            {
+                h: "البروتوكولات الرئيسية",
+                bullets: [
+                    "Ethernet (802.3): الأكثر شيوعاً في LAN.",
+                    "WiFi (802.11): الشبكات اللاسلكية.",
+                    "PPP: الاتصالات المباشرة.",
+                    "HDLC: أساس PPP وغيره.",
+                    "ARP: ربط IP بـ MAC."
+                ]
+            },
+            {
+                h: "قواعد ذهبية للامتحان",
+                bullets: [
+                    "MAC يتغير في كل Hop، IP ثابت.",
+                    "Router له طبقتا Data-Link.",
+                    "ARP Request = Broadcast، Reply = Unicast.",
+                    "Minimum Ethernet Frame = 64 bytes."
+                ]
+            }
+        ],
+        keywords: ["Summary", "MAC", "Framing", "Error", "Ethernet", "WiFi", "ARP", "PPP"]
     }
 ];
 

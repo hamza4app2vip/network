@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>شرح ملف الشبكات — صفحة بصفحة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <div class="bg"></div>
+
+    <!-- Mobile Menu (nafs.css style) -->
+    <div id="drawerOverlay" class="drawer-overlay">
+        <div id="drawer" class="drawer">
+            <div class="drawer-header">
+                <div class="drawer-logo">📚</div>
+                <div class="drawer-title">الملازم الدراسية</div>
+                <button id="closeDrawer" class="drawer-close" aria-label="إغلاق">✕</button>
+            </div>
+            <div class="drawer-content">
+                <a href="./index.html" class="drawer-item active">
+                    <div class="drawer-item-inner">
+                        <span class="drawer-icon">📖</span>
+                        <div class="drawer-item-text">
+                            <div class="drawer-item-title">Chapter 1</div>
+                            <div class="drawer-item-desc">مقدمة في الشبكات</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="./lesson2.html" class="drawer-item">
+                    <div class="drawer-item-inner">
+                        <span class="drawer-icon">🔗</span>
+                        <div class="drawer-item-text">
+                            <div class="drawer-item-title">Chapter 2</div>
+                            <div class="drawer-item-desc">نموذج OSI</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="./lesson3.html" class="drawer-item">
+                    <div class="drawer-item-inner">
+                        <span class="drawer-icon">📡</span>
+                        <div class="drawer-item-text">
+                            <div class="drawer-item-title">Chapter 3</div>
+                            <div class="drawer-item-desc">Physical Layer</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="./lesson4.html" class="drawer-item">
+                    <div class="drawer-item-inner">
+                        <span class="drawer-icon">🔌</span>
+                        <div class="drawer-item-text">
+                            <div class="drawer-item-title">Chapter 7</div>
+                            <div class="drawer-item-desc">Transmission Media</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <header class="topbar">
+        <div class="brand">
+            <button id="menuBtn" class="btn menu-btn" type="button" aria-label="القائمة">
+                <span class="menu-icon">☰</span>
+            </button>
+            <div class="logo" aria-hidden="true">CH1</div>
+            <div class="brandText">
+                <div class="title">Chapter 1 — مقدمة الشبكات</div>
+                <div class="subtitle">ملخّصات قصيرة + تنقّل سريع + بحث</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="./lesson2.html" class="btn ghost" aria-label="الوحدة الثانية">
+                <span class="icon" aria-hidden="true">→</span>
+                <span class="txt">OSI</span>
+            </a>
+            <a href="./lesson3.html" class="btn ghost" aria-label="الوحدة الثالثة">
+                <span class="icon" aria-hidden="true">→</span>
+                <span class="txt">Physical</span>
+            </a>
+            <button id="themeBtn" class="btn ghost" type="button" aria-label="تبديل الوضع">
+                <span class="icon" aria-hidden="true">☾</span>
+                <span class="txt">الوضع</span>
+            </button>
+            <button id="resetBtn" class="btn ghost" type="button" aria-label="تصفير التقدّم">
+                <span class="icon" aria-hidden="true">↺</span>
+                <span class="txt">تصفير</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="layout">
+        <aside class="sidebar">
+            <div class="card searchCard">
+                <label class="label" for="q">ابحث داخل الملخّصات</label>
+                <div class="searchRow">
+                    <input id="q" class="input" type="search" placeholder="مثال: LAN أو Token أو Mesh..."
+                        autocomplete="off" />
+                    <button id="clearBtn" class="btn small" type="button">مسح</button>
+                </div>
+                <div class="hint">نصيحة: اضغط على أي صفحة من القائمة للتفاصيل.</div>
+            </div>
+
+            <div class="card pagesCard">
+                <div class="pagesHead">
+                    <div class="label">الصفحات</div>
+                    <div id="counter" class="pill">0</div>
+                </div>
+                <div id="pagesList" class="pagesList" role="list"></div>
+            </div>
+        </aside>
+
+        <section class="content">
+            <div class="card hero">
+                <div class="heroTop">
+                    <div>
+                        <div id="pageKicker" class="kicker">صفحة</div>
+                        <h1 id="pageTitle" class="h1">اختر صفحة من اليسار</h1>
+                    </div>
+
+                    <div class="navBtns">
+                        <button id="prevBtn" class="btn" type="button">السابق</button>
+                        <button id="nextBtn" class="btn" type="button">التالي</button>
+                    </div>
+                </div>
+
+                <div class="progressWrap" aria-label="تقدّم الفهم">
+                    <div class="progressMeta">
+                        <span>التقدّم</span>
+                        <span id="progressText" class="mono">0%</span>
+                    </div>
+                    <div class="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                        <div id="progressFill" class="progressFill"></div>
+                    </div>
+                </div>
+
+                <div id="summary" class="summary"></div>
+
+                <div class="heroBottom">
+                    <button id="markBtn" class="btn primary" type="button">✔︎ علّمها "مفهومة"</button>
+                    <button id="copyBtn" class="btn ghost" type="button">نسخ الملخص</button>
+                </div>
+            </div>
+
+            <div class="card mini">
+                <div class="miniHead">💡 طريقة استخدام سريعة</div>
+                <ul class="miniList">
+                    <li>اختَر صفحة → اقرأ الملخّص → اضغط "مفهومة".</li>
+                    <li>استخدم البحث للوصول لمصطلح بسرعة.</li>
+                    <li>تقدّمك محفوظ تلقائيًا على نفس الجهاز.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="./app.js"></script>
+</body>
+
+</html>

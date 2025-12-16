@@ -587,7 +587,8 @@ const el = {
     menuBtn: document.getElementById("menuBtn"),
     drawer: document.getElementById("drawer"),
     drawerOverlay: document.getElementById("drawerOverlay"),
-    closeDrawer: document.getElementById("closeDrawer")
+    closeDrawer: document.getElementById("closeDrawer"),
+    drawerThemeBtn: document.getElementById("drawerThemeBtn")
 };
 
 /* ====== Drawer ====== */
@@ -606,6 +607,11 @@ function applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem(LS.theme, theme);
     el.themeBtn.querySelector(".icon").textContent = (theme === "light") ? "☀" : "☾";
+    // Update drawer theme button if exists
+    if (el.drawerThemeBtn) {
+        const icon = el.drawerThemeBtn.querySelector(".drawer-icon");
+        if (icon) icon.textContent = (theme === "light") ? "☀" : "☾";
+    }
 }
 function initTheme() {
     const saved = localStorage.getItem(LS.theme);
@@ -774,6 +780,14 @@ function init() {
         const cur = document.documentElement.getAttribute("data-theme") || "dark";
         applyTheme(cur === "dark" ? "light" : "dark");
     });
+
+    // Drawer theme toggle button
+    if (el.drawerThemeBtn) {
+        el.drawerThemeBtn.addEventListener("click", () => {
+            const cur = document.documentElement.getAttribute("data-theme") || "dark";
+            applyTheme(cur === "dark" ? "light" : "dark");
+        });
+    }
 
     el.resetBtn.addEventListener("click", resetProgress);
 

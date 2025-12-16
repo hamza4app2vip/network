@@ -544,8 +544,9 @@ body::before {
 /* Page Item */
 .pageItem {
     display: flex;
+    flex-direction: row;
     gap: 14px;
-    align-items: flex-start;
+    align-items: center;
     padding: 14px;
     border-radius: var(--radius-md);
     border: 1px solid transparent;
@@ -553,9 +554,7 @@ body::before {
     transition: all var(--transition-normal);
     position: relative;
     min-width: 0;
-    /* Allow flex children to shrink below content size */
     overflow: hidden;
-    /* Prevent any content from overflowing */
 }
 
 .pageItem::before {
@@ -1071,11 +1070,13 @@ body::before {
     color: var(--text-primary);
 }
 
-/* ====== Mobile Menu Button ====== */
+/* ====== Menu Button (always visible) ====== */
 .menu-btn {
-    display: none;
+    display: inline-flex;
     padding: 10px 12px;
     border-radius: var(--radius-sm);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
 }
 
 .menu-btn .menu-icon {
@@ -1350,6 +1351,7 @@ body::before {
 @media (max-width: 900px) {
     .menu-btn {
         display: inline-flex;
+        background: var(--glass-bg-hover);
     }
 
     .layout {

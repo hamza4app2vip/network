@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>شرح نموذج OSI — صفحة بصفحة</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 10 — Error Detection and Correction</title>
+    <meta name="description" content="ملخص Chapter 10 – كشف الأخطاء وتصحيحها: Hamming Distance, Parity, CRC" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
     <div class="bg"></div>
 
-    <!-- Mobile Menu (nafs.css style) -->
+    <!-- Mobile Menu -->
     <div id="drawerOverlay" class="drawer-overlay">
         <div id="drawer" class="drawer">
             <div class="drawer-header">
@@ -32,7 +33,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="./lesson2.html" class="drawer-item active">
+                <a href="./lesson2.html" class="drawer-item">
                     <div class="drawer-item-inner">
                         <span class="drawer-icon">🔗</span>
                         <div class="drawer-item-text">
@@ -68,7 +69,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="./lesson6.html" class="drawer-item">
+                <a href="./lesson6.html" class="drawer-item active">
                     <div class="drawer-item-inner">
                         <span class="drawer-icon">🛡️</span>
                         <div class="drawer-item-text">
@@ -103,21 +104,17 @@
             <button id="menuBtn" class="btn menu-btn" type="button" aria-label="القائمة">
                 <span class="menu-icon">☰</span>
             </button>
-            <div class="logo" aria-hidden="true">OSI</div>
+            <div class="logo" aria-hidden="true">CH10</div>
             <div class="brandText">
-                <div class="title">Chapter 2 — نموذج OSI</div>
-                <div class="subtitle">ملخّصات الطبقات السبعة + تنقّل سريع</div>
+                <div class="title">Chapter 10 — Error Detection & Correction</div>
+                <div class="subtitle">كشف الأخطاء وتصحيحها: Hamming, Parity, CRC</div>
             </div>
         </div>
 
         <div class="actions">
-            <a href="./index.html" class="btn ghost" aria-label="العودة للأولى">
+            <a href="./lesson5.html" class="btn ghost">
                 <span class="icon" aria-hidden="true">←</span>
-                <span class="txt">Ch1</span>
-            </a>
-            <a href="./lesson3.html" class="btn ghost" aria-label="الوحدة الثالثة">
-                <span class="icon" aria-hidden="true">→</span>
-                <span class="txt">Physical</span>
+                <span class="txt">Data-Link</span>
             </a>
             <button id="themeBtn" class="btn ghost" type="button" aria-label="تبديل الوضع">
                 <span class="icon" aria-hidden="true">☾</span>
@@ -135,7 +132,7 @@
             <div class="card searchCard">
                 <label class="label" for="q">ابحث داخل الملخّصات</label>
                 <div class="searchRow">
-                    <input id="q" class="input" type="search" placeholder="مثال: Physical أو Transport أو Framing..."
+                    <input id="q" class="input" type="search" placeholder="مثال: CRC أو Hamming أو Parity..."
                         autocomplete="off" />
                     <button id="clearBtn" class="btn small" type="button">مسح</button>
                 </div>
@@ -165,10 +162,10 @@
                     </div>
                 </div>
 
-                <div class="progressWrap" aria-label="تقدّم الفهم">
+                <div class="progressWrap">
                     <div class="progressMeta">
-                        <span>التقدّم</span>
-                        <span id="progressText" class="mono">0%</span>
+                        <span>إجمالي التقدّم</span>
+                        <span id="progressText">0%</span>
                     </div>
                     <div class="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                         <div id="progressFill" class="progressFill"></div>
@@ -182,23 +179,10 @@
                     <button id="copyBtn" class="btn ghost" type="button">نسخ الملخص</button>
                 </div>
             </div>
-
-            <div class="card mini">
-                <div class="miniHead">🔗 طبقات نموذج OSI (من الأعلى للأسفل)</div>
-                <ul class="miniList">
-                    <li><strong>Application</strong> — التطبيقات (بريد، ملفات)</li>
-                    <li><strong>Presentation</strong> — الترميز والتشفير</li>
-                    <li><strong>Session</strong> — إدارة الجلسات</li>
-                    <li><strong>Transport</strong> — النقل الموثوق</li>
-                    <li><strong>Network</strong> — التوجيه والعنونة</li>
-                    <li><strong>Data Link</strong> — الإطارات والتحكم</li>
-                    <li><strong>Physical</strong> — الإشارات الفيزيائية</li>
-                </ul>
-            </div>
         </section>
     </main>
 
-    <script src="./lesson2.js"></script>
+    <script src="./lesson6.js"></script>
 </body>
 
 </html>

@@ -426,7 +426,7 @@ const PAGES = [
 
 /* ====== State & Storage ====== */
 const LS = {
-    theme: "net_ch1_theme",
+    theme: "net_global_theme",
     done: "net_ch1_done_pages",
     last: "net_ch1_last_page"
 };
@@ -491,6 +491,13 @@ function initTheme() {
     const preferLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
     applyTheme(preferLight ? "light" : "dark");
 }
+
+// Cross-tab theme synchronization
+window.addEventListener("storage", (e) => {
+    if (e.key === LS.theme && e.newValue) {
+        applyTheme(e.newValue);
+    }
+});
 
 /* ====== Helpers ====== */
 function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }

@@ -1,22 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 12 — Media Access Control (MAC)</title>
-    <meta name="description"
-        content="ملخص Chapter 12 – التحكم في الوصول للوسط: ALOHA, CSMA/CD, CSMA/CA, Token Passing" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>عناوين IPv4 — العنونة المنطقية وتقنيات التقسيم</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
     <div class="bg"></div>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu (nafs.css style) -->
     <div id="drawerOverlay" class="drawer-overlay">
         <div id="drawer" class="drawer">
             <div class="drawer-header">
@@ -79,7 +77,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="./lesson7.html" class="drawer-item active">
+                <a href="./lesson7.html" class="drawer-item">
                     <div class="drawer-item-inner">
                         <span class="drawer-icon">📶</span>
                         <div class="drawer-item-text">
@@ -97,7 +95,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="./lesson9.html" class="drawer-item">
+                <a href="./lesson9.html" class="drawer-item active">
                     <div class="drawer-item-inner">
                         <span class="drawer-icon">🔢</span>
                         <div class="drawer-item-text">
@@ -132,17 +130,17 @@
             <button id="menuBtn" class="btn menu-btn" type="button" aria-label="القائمة">
                 <span class="menu-icon">☰</span>
             </button>
-            <div class="logo" aria-hidden="true">CH12</div>
+            <div class="logo" aria-hidden="true">IPv4</div>
             <div class="brandText">
-                <div class="title">Chapter 12 — Media Access Control</div>
-                <div class="subtitle">التحكم في الوصول: ALOHA, CSMA/CD, CSMA/CA</div>
+                <div class="title">عناوين IPv4 — IPv4 Addressing</div>
+                <div class="subtitle">العنونة المنطقية + Subnetting + CIDR + NAT</div>
             </div>
         </div>
 
         <div class="actions">
-            <a href="./lesson6.html" class="btn ghost">
+            <a href="./lesson8.html" class="btn ghost" aria-label="العودة للثامنة">
                 <span class="icon" aria-hidden="true">←</span>
-                <span class="txt">Error</span>
+                <span class="txt">LANs</span>
             </a>
             <button id="themeBtn" class="btn ghost" type="button" aria-label="تبديل الوضع">
                 <span class="icon" aria-hidden="true">☾</span>
@@ -160,7 +158,7 @@
             <div class="card searchCard">
                 <label class="label" for="q">ابحث داخل الملخّصات</label>
                 <div class="searchRow">
-                    <input id="q" class="input" type="search" placeholder="مثال: CSMA أو Token أو ALOHA..."
+                    <input id="q" class="input" type="search" placeholder="مثال: Subnet أو CIDR أو NAT..."
                         autocomplete="off" />
                     <button id="clearBtn" class="btn small" type="button">مسح</button>
                 </div>
@@ -190,10 +188,10 @@
                     </div>
                 </div>
 
-                <div class="progressWrap">
+                <div class="progressWrap" aria-label="تقدّم الفهم">
                     <div class="progressMeta">
-                        <span>إجمالي التقدّم</span>
-                        <span id="progressText">0%</span>
+                        <span>التقدّم</span>
+                        <span id="progressText" class="mono">0%</span>
                     </div>
                     <div class="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                         <div id="progressFill" class="progressFill"></div>
@@ -207,10 +205,23 @@
                     <button id="copyBtn" class="btn ghost" type="button">نسخ الملخص</button>
                 </div>
             </div>
+
+            <div class="card mini">
+                <div class="miniHead">🔢 مواضيع عنونة IPv4</div>
+                <ul class="miniList">
+                    <li><strong>IPv4 Address</strong> — العنوان المنطقي 32 بت</li>
+                    <li><strong>Classful vs Classless</strong> — العنونة الصفية واللاصفية</li>
+                    <li><strong>Subnet Mask</strong> — قناع الشبكة</li>
+                    <li><strong>Subnetting</strong> — تقسيم الشبكات</li>
+                    <li><strong>CIDR</strong> — التدوين الحديث</li>
+                    <li><strong>Private & Special Addresses</strong> — العناوين الخاصة</li>
+                    <li><strong>NAT</strong> — ترجمة العناوين</li>
+                </ul>
+            </div>
         </section>
     </main>
 
-    <script src="./lesson7.js"></script>
+    <script src="./lesson9.js"></script>
 </body>
 
 </html>

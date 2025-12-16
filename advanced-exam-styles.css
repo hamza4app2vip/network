@@ -101,6 +101,288 @@
     z-index: 1;
 }
 
+/* ====== SVG Icon Styles ====== */
+.drawer-logo svg,
+.drawer-close svg,
+.drawer-icon svg,
+.menu-icon svg,
+.btn .icon svg,
+.badge-icon svg,
+.stat-icon svg,
+.timer-icon svg,
+.score-icon svg,
+.btn-icon svg,
+.btn-arrow svg,
+.title-icon,
+.results-badge svg,
+.nav-btn svg,
+.results-actions .btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.drawer-logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: var(--radius-sm);
+    color: white;
+}
+
+.drawer-logo svg {
+    width: 22px;
+    height: 22px;
+}
+
+.drawer-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.drawer-close:hover {
+    background: var(--glass-bg);
+    color: var(--text-primary);
+}
+
+.drawer-close svg {
+    width: 18px;
+    height: 18px;
+}
+
+.drawer-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: var(--radius-sm);
+    color: white;
+    flex-shrink: 0;
+}
+
+.drawer-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn .icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.theme-icon {
+    position: relative;
+}
+
+.theme-icon .sun-icon,
+.theme-icon .moon-icon {
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+[data-theme="light"] .theme-icon .moon-icon {
+    display: none;
+}
+
+[data-theme="light"] .theme-icon .sun-icon {
+    display: block !important;
+}
+
+.exam-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.exam-logo svg {
+    width: 28px;
+    height: 28px;
+}
+
+.badge-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: var(--primary-light);
+}
+
+.badge-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: var(--radius-md);
+    color: white;
+    flex-shrink: 0;
+}
+
+.stat-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.stat-icon--time {
+    background: linear-gradient(135deg, #ef4444, #f59e0b);
+}
+
+.stat-icon--score {
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+}
+
+.stat-icon--sections {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+}
+
+.stat-icon--questions {
+    background: linear-gradient(135deg, #f59e0b, #eab308);
+}
+
+.timer-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ef4444;
+}
+
+.timer-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.score-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--success);
+}
+
+.score-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.title-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+}
+
+.preview-title .title-icon {
+    color: var(--primary-light);
+}
+
+.preview-title::before {
+    content: none;
+}
+
+.instructions-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.instructions-title .title-icon {
+    color: var(--accent);
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.btn-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-fast);
+}
+
+.btn-arrow svg {
+    width: 24px;
+    height: 24px;
+}
+
+.start-exam-btn:hover .btn-arrow {
+    transform: translateX(-8px);
+}
+
+.nav-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.results-badge {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f59e0b, #eab308);
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    color: white;
+    animation: bounce 1s ease-in-out;
+}
+
+.results-badge svg {
+    width: 40px;
+    height: 40px;
+}
+
+.results-actions .btn svg {
+    width: 18px;
+    height: 18px;
+}
+
 /* ====== Exam Logo ====== */
 .exam-logo {
     background: linear-gradient(135deg, #f59e0b, #ef4444) !important;

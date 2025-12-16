@@ -1,5 +1,177 @@
 /* ====== Quiz Styles ====== */
 
+/* ====== SVG Icon Styles for Quiz ====== */
+.drawer-logo svg,
+.drawer-close svg,
+.drawer-icon svg,
+.menu-icon svg,
+.btn .icon svg,
+.logo svg,
+.banner-icon svg,
+.banner-arrow svg,
+.back-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.drawer-logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: var(--radius-sm);
+    color: white;
+}
+
+.drawer-logo svg {
+    width: 22px;
+    height: 22px;
+}
+
+.drawer-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.drawer-close:hover {
+    background: var(--glass-bg);
+    color: var(--text-primary);
+}
+
+.drawer-close svg {
+    width: 18px;
+    height: 18px;
+}
+
+.drawer-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: var(--radius-sm);
+    color: white;
+    flex-shrink: 0;
+}
+
+.drawer-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn .icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.theme-icon {
+    position: relative;
+}
+
+.theme-icon .sun-icon,
+.theme-icon .moon-icon {
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+[data-theme="light"] .theme-icon .moon-icon {
+    display: none;
+}
+
+[data-theme="light"] .theme-icon .sun-icon {
+    display: block !important;
+}
+
+.quiz-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.quiz-logo svg {
+    width: 28px;
+    height: 28px;
+}
+
+.banner-icon {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    border-radius: var(--radius-md);
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.banner-icon svg {
+    width: 36px;
+    height: 36px;
+}
+
+.banner-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-light);
+    transition: transform var(--transition-fast);
+}
+
+.banner-arrow svg {
+    width: 28px;
+    height: 28px;
+}
+
+.advanced-exam-banner:hover .banner-arrow {
+    transform: translateX(-10px);
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
 .quiz-main {
     max-width: 1200px;
     margin: 0 auto;

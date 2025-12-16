@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الاختبار الشامل المتقدم — Advanced Network Exam</title>
+    <meta name="description" content="اختبار شامل ومتقدم يغطي جميع المواضيع من الملزمة 1 إلى IPv4 — 150 درجة" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./advanced-exam-styles.css" />
+</head>
+
+<body>
+    <div class="bg"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="drawerOverlay" class="drawer-overlay">
+        <div id="drawer" class="drawer">
+            <div class="drawer-header">
+                <div class="drawer-logo">📚</div>
+                <div class="drawer-title">الملازم الدراسية</div>
+                <button id="closeDrawer" class="drawer-close" aria-label="إغلاق">✕</button>
+            </div>
+            <div class="drawer-content">
+                <a href="./index.html" class="drawer-item">
+                    <div class="drawer-item-inner">
+                        <span class="drawer-icon">📖</span>
+                        <div class="drawer-item-text">
+                            <div class="drawer-item-title">Chapter 1</div>
+                            <div class="drawer-item-desc">مقدمة في الشبكات</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="./lesson2.html" class="drawer-item">
+                    <div class="drawer-item-inner">
+                        <span class="drawer-icon">🔗</span>
+                        <div class="drawer-item-text">
+                            <div class="drawer-item-title">Chapter 2</div>
+                            <div class="drawer-item-desc">نموذج OSI</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="./lesson3.html" class="drawer-item">
+                    <div class="drawer-item-inner">
+                        <span class="drawer-icon">📡</span>
+                        <div class="drawer-item-text">
+                            <div class="drawer-item-title">Chapter 3</div>
+                            <div class="drawer-item-desc">Physical Layer</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="./quiz.html" class="drawer-item">
+                    <div class="drawer-item-inner">
+                        <span class="drawer-icon">📝</span>
+                        <div class="drawer-item-text">
+                            <div class="drawer-item-title">الاختبارات</div>
+                            <div class="drawer-item-desc">200+ سؤال</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="./advanced-exam.html" class="drawer-item active">
+                    <div class="drawer-item-inner">
+                        <span class="drawer-icon">🎓</span>
+                        <div class="drawer-item-text">
+                            <div class="drawer-item-title">الاختبار الشامل</div>
+                            <div class="drawer-item-desc">150 درجة</div>
+                        </div>
+                    </div>
+                </a>
+                <button id="drawerThemeBtn" class="drawer-item drawer-theme-btn">
+                    <div class="drawer-item-inner">
+                        <span class="drawer-icon">☾</span>
+                        <div class="drawer-item-text">
+                            <div class="drawer-item-title">تبديل الوضع</div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <header class="topbar">
+        <div class="brand">
+            <button id="menuBtn" class="btn menu-btn" type="button" aria-label="القائمة">
+                <span class="menu-icon">☰</span>
+            </button>
+            <div class="logo exam-logo" aria-hidden="true">🎓</div>
+            <div class="brandText">
+                <div class="title">الاختبار الشامل المتقدم</div>
+                <div class="subtitle">150 درجة — 3 ساعات — من الملزمة 1 إلى IPv4</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="./quiz.html" class="btn ghost">
+                <span class="icon" aria-hidden="true">←</span>
+                <span class="txt">الاختبارات</span>
+            </a>
+            <button id="themeBtn" class="btn ghost" type="button" aria-label="تبديل الوضع">
+                <span class="icon" aria-hidden="true">☾</span>
+                <span class="txt">الوضع</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="exam-main">
+        <!-- Exam Introduction -->
+        <section id="examIntro" class="exam-intro">
+            <div class="exam-hero">
+                <div class="exam-hero-glow"></div>
+                <div class="exam-badge">
+                    <span class="badge-icon"></span>
+                    <span class="badge-text">اختبار جامعي شامل</span>
+                </div>
+                <h1 class="exam-title">
+                    <span class="title-line">اختبار شبكات الحاسوب</span>
+                    <span class="title-sub">تراسل البيانات — الاختبار الشامل</span>
+                </h1>
+                <p class="exam-description">
+                    اختبار متقدم وشامل يغطي جميع المواضيع من الملزمة الأولى وحتى IPv4 Addressing/Subnetting/CIDR
+                </p>
+
+                <div class="exam-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱</div>
+                        <div class="stat-info">
+                            <div class="stat-value">3 ساعات</div>
+                            <div class="stat-label">الوقت المتاح</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <div class="stat-value">150 درجة</div>
+                            <div class="stat-label">الدرجة الكاملة</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <div class="stat-value">7 أقسام</div>
+                            <div class="stat-label">متنوعة</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <div class="stat-value">60+ سؤال</div>
+                            <div class="stat-label">شامل</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exam-sections-preview">
+                    <h3 class="preview-title">أقسام الاختبار</h3>
+                    <div class="sections-grid">
+                        <div class="section-preview-card">
+                            <span class="section-letter">A</span>
+                            <span class="section-name">اختيار من متعدد</span>
+                            <span class="section-points">50 درجة</span>
+                        </div>
+                        <div class="section-preview-card">
+                            <span class="section-letter">B</span>
+                            <span class="section-name">صح/خطأ + تصحيح</span>
+                            <span class="section-points">20 درجة</span>
+                        </div>
+                        <div class="section-preview-card">
+                            <span class="section-letter">C</span>
+                            <span class="section-name">أكمل الفراغات</span>
+                            <span class="section-points">15 درجة</span>
+                        </div>
+                        <div class="section-preview-card">
+                            <span class="section-letter">D</span>
+                            <span class="section-name">أسئلة نظرية</span>
+                            <span class="section-points">25 درجة</span>
+                        </div>
+                        <div class="section-preview-card">
+                            <span class="section-letter">E</span>
+                            <span class="section-name">تحليل ومقارنة</span>
+                            <span class="section-points">20 درجة</span>
+                        </div>
+                        <div class="section-preview-card">
+                            <span class="section-letter">F</span>
+                            <span class="section-name">مسائل حسابية</span>
+                            <span class="section-points">50 درجة</span>
+                        </div>
+                        <div class="section-preview-card">
+                            <span class="section-letter">G</span>
+                            <span class="section-name">سيناريو واقعي</span>
+                            <span class="section-points">20 درجة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exam-instructions">
+                    <h3 class="instructions-title"> تعليمات الاختبار</h3>
+                    <ul class="instructions-list">
+                        <li>أجب عن <strong>كل الأقسام</strong> بدون استثناء</li>
+                        <li>في المسائل الحسابية: اكتب <strong>القوانين والخطوات</strong> بوضوح</li>
+                        <li>أي نتيجة بدون خطوات <strong>قد لا تُحتسب</strong> كاملة</li>
+                        <li>اقرأ كل سؤال بعناية قبل الإجابة</li>
+                        <li>راجع إجاباتك قبل التسليم</li>
+                    </ul>
+                </div>
+
+                <button id="startExam" class="start-exam-btn">
+                    <span class="btn-icon"></span>
+                    <span class="btn-text">ابدأ الاختبار الآن</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Exam Container -->
+        <section id="examContainer" class="exam-container" style="display: none;">
+            <!-- Timer & Progress -->
+            <div class="exam-top-bar">
+                <div class="timer-section">
+                    <div class="timer-icon">⏱️</div>
+                    <div id="examTimer" class="exam-timer">03:00:00</div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-text">
+                        <span id="currentSection">القسم A</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="exam-progress-bar">
+                        <div id="examProgressFill" class="exam-progress-fill"></div>
+                    </div>
+                </div>
+                <div class="score-section">
+                    <div class="score-icon">📊</div>
+                    <div class="score-display">
+                        <span id="currentScore">0</span>/<span>150</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Navigation -->
+            <div class="section-nav">
+                <button class="section-nav-btn active" data-section="A">A</button>
+                <button class="section-nav-btn" data-section="B">B</button>
+                <button class="section-nav-btn" data-section="C">C</button>
+                <button class="section-nav-btn" data-section="D">D</button>
+                <button class="section-nav-btn" data-section="E">E</button>
+                <button class="section-nav-btn" data-section="F">F</button>
+                <button class="section-nav-btn" data-section="G">G</button>
+            </div>
+
+            <!-- Questions Container -->
+            <div id="questionsContainer" class="questions-container">
+                <!-- Questions will be loaded here -->
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="exam-navigation">
+                <button id="prevSection" class="nav-btn prev-btn" disabled>
+                    <span>→</span>
+                    <span>القسم السابق</span>
+                </button>
+                <button id="submitExam" class="nav-btn submit-btn" style="display: none;">
+                    <span>✓</span>
+                    <span>تسليم الاختبار</span>
+                </button>
+                <button id="nextSection" class="nav-btn next-btn">
+                    <span>القسم التالي</span>
+                    <span>←</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="examResults" class="exam-results" style="display: none;">
+            <div class="results-card">
+                <div class="results-header">
+                    <div class="results-badge" id="resultsBadge">🏆</div>
+                    <h2 class="results-title">نتيجة الاختبار</h2>
+                </div>
+
+                <div class="results-score-circle">
+                    <svg class="score-ring" viewBox="0 0 120 120">
+                        <circle class="score-ring-bg" cx="60" cy="60" r="52" />
+                        <circle class="score-ring-fill" cx="60" cy="60" r="52" id="scoreRing" />
+                    </svg>
+                    <div class="score-content">
+                        <span id="finalScore" class="final-score-number">0</span>
+                        <span class="score-total">/150</span>
+                    </div>
+                </div>
+
+                <div id="finalPercentage" class="final-percentage">0%</div>
+                <div id="resultMessage" class="result-message">جاري حساب النتيجة...</div>
+
+                <div class="results-breakdown">
+                    <h3 class="breakdown-title">تفصيل الدرجات</h3>
+                    <div id="sectionScores" class="section-scores">
+                        <!-- Section scores will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button id="reviewAnswers" class="btn primary">
+                        <span>📋</span>
+                        <span>مراجعة الإجابات</span>
+                    </button>
+                    <button id="retakeExam" class="btn ghost">
+                        <span>🔄</span>
+                        <span>إعادة الاختبار</span>
+                    </button>
+                    <a href="./quiz.html" class="btn ghost">
+                        <span>←</span>
+                        <span>العودة للاختبارات</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="./advanced-exam.js"></script>
+</body>
+
+</html>

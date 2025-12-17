@@ -1206,10 +1206,10 @@ function init() {
         }
     });
     if (el.retakeExam) el.retakeExam.addEventListener("click", retakeExam);
+
+    // Review answers
     if (el.reviewAnswers) {
-        el.reviewAnswers.addEventListener("click", () => {
-            alert("ميزة مراجعة الإجابات قيد التطوير.\nستتمكن قريباً من مراجعة إجاباتك والإجابات الصحيحة.");
-        });
+        el.reviewAnswers.addEventListener("click", openReviewModal);
     }
 
     // Section nav buttons
@@ -1218,6 +1218,25 @@ function init() {
             if (state.examStarted && !state.examSubmitted) {
                 renderSection(btn.dataset.section);
             }
+        });
+    });
+
+    // Review modal events
+    const reviewModal = document.getElementById("reviewModal");
+    const closeReview = document.getElementById("closeReview");
+    const closeReviewBtn = document.getElementById("closeReviewBtn");
+    const reviewOverlay = reviewModal?.querySelector(".review-overlay");
+    const reviewNavBtns = document.querySelectorAll(".review-nav-btn");
+
+    if (closeReview) closeReview.addEventListener("click", closeReviewModal);
+    if (closeReviewBtn) closeReviewBtn.addEventListener("click", closeReviewModal);
+    if (reviewOverlay) reviewOverlay.addEventListener("click", closeReviewModal);
+
+    reviewNavBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            reviewNavBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderReviewSection(btn.dataset.section);
         });
     });
 
@@ -1231,6 +1250,328 @@ function init() {
         </linearGradient>
     `;
     document.querySelector(".score-ring")?.appendChild(svgDefs);
+}
+
+/* ====== Review Modal Functions ====== */
+function openReviewModal() {
+    const reviewModal = document.getElementById("reviewModal");
+    if (reviewModal) {
+        reviewModal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+
+        // Calculate stats
+        calculateReviewStats();
+
+        // Render first section
+        renderReviewSection("A");
+    }
+}
+
+function closeReviewModal() {
+    const reviewModal = document.getElementById("reviewModal");
+    if (reviewModal) {
+        reviewModal.style.display = "none";
+        document.body.style.overflow = "";
+    }
+}
+
+function calculateReviewStats() {
+    let correct = 0;
+    let wrong = 0;
+    let skipped = 0;
+
+    // Count MCQ (Section A)
+    const sectionA = EXAM_DATA.sections.A;
+    sectionA.questions.forEach((q, i) => {
+        const answer = state.answers[`A_${i}`];
+        if (answer === undefined) {
+            skipped++;
+        } else if (answer === q.correct) {
+            correct++;
+        } else {
+            wrong++;
+        }
+    });
+
+    // Count True/False (Section B)
+    const sectionB = EXAM_DATA.sections.B;
+    sectionB.questions.forEach((q, i) => {
+        const answer = state.answers[`B_${i}`];
+        if (!answer || answer.value === undefined) {
+            skipped++;
+        } else if (answer.value === q.correct) {
+            correct++;
+        } else {
+            wrong++;
+        }
+    });
+
+    // Count Fill Blank (Section C)
+    const sectionC = EXAM_DATA.sections.C;
+    sectionC.questions.forEach((q, i) => {
+        const answer = state.answers[`C_${i}`];
+        if (!answer || !answer.trim()) {
+            skipped++;
+        } else if (q.answer.some(a =>
+            answer.toLowerCase().trim().includes(a.toLowerCase()) ||
+            a.toLowerCase().includes(answer.toLowerCase().trim())
+        )) {
+            correct++;
+        } else {
+            wrong++;
+        }
+    });
+
+    // Update stats display
+    document.getElementById("correctCount").textContent = correct;
+    document.getElementById("wrongCount").textContent = wrong;
+    document.getElementById("skippedCount").textContent = skipped;
+}
+
+function renderReviewSection(sectionId) {
+    const container = document.getElementById("reviewContainer");
+    const section = EXAM_DATA.sections[sectionId];
+
+    if (!container || !section) return;
+
+    let html = `<h3 style="color: var(--primary-light); margin-bottom: 20px; font-size: 1.2rem;">${section.name}</h3>`;
+
+    switch (section.type) {
+        case "mcq":
+            html += renderReviewMCQ(section, sectionId);
+            break;
+        case "truefalse":
+            html += renderReviewTrueFalse(section, sectionId);
+            break;
+        case "fillblank":
+            html += renderReviewFillBlank(section, sectionId);
+            break;
+        case "essay":
+        case "calculation":
+        case "scenario":
+            html += renderReviewEssay(section, sectionId);
+            break;
+    }
+
+    container.innerHTML = html;
+    container.scrollTop = 0;
+}
+
+function renderReviewMCQ(section, sectionId) {
+    let html = "";
+    section.questions.forEach((q, i) => {
+        const userAnswer = state.answers[`${sectionId}_${i}`];
+        const isCorrect = userAnswer === q.correct;
+        const isSkipped = userAnswer === undefined;
+        const status = isSkipped ? "skipped" : (isCorrect ? "correct" : "wrong");
+        const statusText = isSkipped ? "لم تُجَب" : (isCorrect ? "صحيحة" : "خاطئة");
+        const statusIcon = isSkipped ?
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>` :
+            (isCorrect ?
+                `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>` :
+                `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
+            );
+
+        html += `
+            <div class="review-question ${status}">
+                <div class="review-question-header">
+                    <div class="review-question-number">${i + 1}</div>
+                    <div class="review-question-status">${statusIcon} ${statusText}</div>
+                </div>
+                <div class="review-question-text">${q.q}</div>
+                <div class="review-answers">
+                    ${q.options.map((opt, j) => {
+            let classes = [];
+            let label = "";
+
+            if (j === q.correct) {
+                classes.push("correct-answer");
+                label = `<span class="review-answer-label correct-label">الإجابة الصحيحة</span>`;
+            }
+            if (j === userAnswer && !isCorrect) {
+                classes.push("user-wrong");
+                label = `<span class="review-answer-label your-answer">إجابتك</span>`;
+            }
+            if (j === userAnswer && isCorrect) {
+                label = `<span class="review-answer-label correct-label">إجابتك ✓</span>`;
+            }
+
+            return `
+                            <div class="review-answer-item ${classes.join(" ")}">
+                                <span class="review-answer-letter">${String.fromCharCode(65 + j)}</span>
+                                <span>${opt}</span>
+                                ${label}
+                            </div>
+                        `;
+        }).join("")}
+                </div>
+            </div>
+        `;
+    });
+    return html;
+}
+
+function renderReviewTrueFalse(section, sectionId) {
+    let html = "";
+    section.questions.forEach((q, i) => {
+        const answer = state.answers[`${sectionId}_${i}`];
+        const userAnswer = answer?.value;
+        const userCorrection = answer?.correction || "";
+        const isSkipped = userAnswer === undefined;
+        const isCorrect = userAnswer === q.correct;
+        const status = isSkipped ? "skipped" : (isCorrect ? "correct" : "wrong");
+        const statusText = isSkipped ? "لم تُجَب" : (isCorrect ? "صحيحة" : "خاطئة");
+        const statusIcon = isSkipped ?
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>` :
+            (isCorrect ?
+                `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>` :
+                `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
+            );
+
+        html += `
+            <div class="review-question ${status}">
+                <div class="review-question-header">
+                    <div class="review-question-number">${i + 1}</div>
+                    <div class="review-question-status">${statusIcon} ${statusText}</div>
+                </div>
+                <div class="review-question-text">${q.q}</div>
+                
+                <div class="review-answers">
+                    <div class="review-answer-item ${q.correct === true ? 'correct-answer' : ''} ${userAnswer === true && !q.correct ? 'user-wrong' : ''}">
+                        <span class="review-answer-letter">✓</span>
+                        <span>صح</span>
+                        ${q.correct === true ? '<span class="review-answer-label correct-label">الإجابة الصحيحة</span>' : ''}
+                        ${userAnswer === true && userAnswer !== q.correct ? '<span class="review-answer-label your-answer">إجابتك</span>' : ''}
+                        ${userAnswer === true && q.correct === true ? '<span class="review-answer-label correct-label">إجابتك ✓</span>' : ''}
+                    </div>
+                    <div class="review-answer-item ${q.correct === false ? 'correct-answer' : ''} ${userAnswer === false && q.correct ? 'user-wrong' : ''}">
+                        <span class="review-answer-letter">✗</span>
+                        <span>خطأ</span>
+                        ${q.correct === false ? '<span class="review-answer-label correct-label">الإجابة الصحيحة</span>' : ''}
+                        ${userAnswer === false && userAnswer !== q.correct ? '<span class="review-answer-label your-answer">إجابتك</span>' : ''}
+                        ${userAnswer === false && q.correct === false ? '<span class="review-answer-label correct-label">إجابتك ✓</span>' : ''}
+                    </div>
+                </div>
+                
+                ${q.correction ? `
+                    <div class="review-correct-answer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4"/>
+                            <path d="M12 8h.01"/>
+                        </svg>
+                        <span>التصحيح:</span>
+                        <span class="correct-text">${q.correction}</span>
+                    </div>
+                ` : ''}
+                
+                ${userCorrection ? `
+                    <div class="review-user-answer">
+                        <span class="answer-label">تصحيحك:</span>
+                        <div class="answer-content">${userCorrection}</div>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    });
+    return html;
+}
+
+function renderReviewFillBlank(section, sectionId) {
+    let html = "";
+    section.questions.forEach((q, i) => {
+        const userAnswer = state.answers[`${sectionId}_${i}`] || "";
+        const isSkipped = !userAnswer.trim();
+        const isCorrect = q.answer.some(a =>
+            userAnswer.toLowerCase().trim().includes(a.toLowerCase()) ||
+            a.toLowerCase().includes(userAnswer.toLowerCase().trim())
+        );
+        const status = isSkipped ? "skipped" : (isCorrect ? "correct" : "wrong");
+        const statusText = isSkipped ? "لم تُجَب" : (isCorrect ? "صحيحة" : "خاطئة");
+        const statusIcon = isSkipped ?
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>` :
+            (isCorrect ?
+                `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>` :
+                `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
+            );
+
+        html += `
+            <div class="review-question ${status}">
+                <div class="review-question-header">
+                    <div class="review-question-number">${i + 1}</div>
+                    <div class="review-question-status">${statusIcon} ${statusText}</div>
+                </div>
+                <div class="review-question-text">${q.q.replace("________", `<strong style="color: var(--primary-light);">[فراغ]</strong>`)}</div>
+                
+                ${userAnswer ? `
+                    <div class="review-user-answer">
+                        <span class="answer-label">إجابتك:</span>
+                        <div class="answer-content" style="${isCorrect ? 'border-color: #10b981;' : 'border-color: #ef4444;'}">${userAnswer}</div>
+                    </div>
+                ` : ''}
+                
+                <div class="review-correct-answer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>الإجابة الصحيحة:</span>
+                    <span class="correct-text">${q.answer[0]}</span>
+                </div>
+            </div>
+        `;
+    });
+    return html;
+}
+
+function renderReviewEssay(section, sectionId) {
+    let html = "";
+    section.questions.forEach((q, i) => {
+        const answer = state.answers[`${sectionId}_${i}`];
+        const hasAnswer = answer && (typeof answer === 'string' ? answer.trim() : Object.values(answer).some(v => v && v.trim()));
+
+        html += `
+            <div class="review-question ${hasAnswer ? 'correct' : 'skipped'}">
+                <div class="review-question-header">
+                    <div class="review-question-number">${q.id || (i + 1)}</div>
+                    <div class="review-question-status">
+                        ${hasAnswer ?
+                `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> تمت الإجابة` :
+                `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> لم تُجَب`
+            }
+                    </div>
+                </div>
+                <div class="review-question-text">${q.q}</div>
+                
+                ${q.hint ? `<p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">💡 تلميح: ${q.hint}</p>` : ''}
+                
+                ${typeof answer === 'string' && answer ? `
+                    <div class="review-user-answer">
+                        <span class="answer-label">إجابتك:</span>
+                        <div class="answer-content">${answer}</div>
+                    </div>
+                ` : ''}
+                
+                ${typeof answer === 'object' && answer ? `
+                    ${q.parts ? q.parts.map((part, j) => {
+                const partAnswer = answer[`part_${j}`] || "";
+                return partAnswer ? `
+                            <div class="review-user-answer">
+                                <span class="answer-label">${part.label}:</span>
+                                <div class="answer-content">${partAnswer}</div>
+                            </div>
+                        ` : '';
+            }).join('') : ''}
+                ` : ''}
+                
+                ${!hasAnswer ? `
+                    <div style="padding: 16px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-md); color: #f59e0b; font-size: 0.9rem;">
+                        ⚠️ لم يتم الإجابة على هذا السؤال
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    });
+    return html;
 }
 
 // Start

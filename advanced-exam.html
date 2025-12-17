@@ -505,6 +505,78 @@
                 </div>
             </div>
         </section>
+
+        <!-- Review Modal -->
+        <section id="reviewModal" class="review-modal" style="display: none;">
+            <div class="review-overlay"></div>
+            <div class="review-content">
+                <div class="review-header">
+                    <h2 class="review-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                        </svg>
+                        مراجعة الإجابات
+                    </h2>
+                    <button id="closeReview" class="review-close" aria-label="إغلاق">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="review-stats">
+                    <div class="review-stat correct">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span id="correctCount">0</span>
+                        <span>صحيحة</span>
+                    </div>
+                    <div class="review-stat wrong">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                        <span id="wrongCount">0</span>
+                        <span>خاطئة</span>
+                    </div>
+                    <div class="review-stat skipped">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                        </svg>
+                        <span id="skippedCount">0</span>
+                        <span>لم تُجَب</span>
+                    </div>
+                </div>
+
+                <div class="review-sections-nav">
+                    <button class="review-nav-btn active" data-section="A">A</button>
+                    <button class="review-nav-btn" data-section="B">B</button>
+                    <button class="review-nav-btn" data-section="C">C</button>
+                    <button class="review-nav-btn" data-section="D">D</button>
+                    <button class="review-nav-btn" data-section="E">E</button>
+                    <button class="review-nav-btn" data-section="F">F</button>
+                    <button class="review-nav-btn" data-section="G">G</button>
+                </div>
+
+                <div id="reviewContainer" class="review-container">
+                    <!-- Review questions will be loaded here -->
+                </div>
+
+                <div class="review-footer">
+                    <button id="closeReviewBtn" class="btn primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>إغلاق المراجعة</span>
+                    </button>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script src="./advanced-exam.js"></script>

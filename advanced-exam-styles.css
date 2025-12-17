@@ -1619,3 +1619,1029 @@
         justify-content: center;
     }
 }
+
+/* ====== Review Modal Styles - Enhanced Design ====== */
+.review-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.review-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.97), rgba(30, 41, 59, 0.97));
+    backdrop-filter: blur(20px);
+}
+
+.review-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 900px;
+    max-height: calc(100vh - 80px);
+    background: linear-gradient(145deg,
+            rgba(30, 41, 59, 0.99),
+            rgba(15, 23, 42, 0.99));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 100px rgba(99, 102, 241, 0.15);
+}
+
+[data-theme="light"] .review-content {
+    background: linear-gradient(145deg,
+            rgba(255, 255, 255, 0.99),
+            rgba(248, 250, 252, 0.99));
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.05),
+        0 25px 50px -12px rgba(0, 0, 0, 0.15),
+        0 0 100px rgba(99, 102, 241, 0.1);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Header */
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+    background: linear-gradient(180deg,
+            rgba(99, 102, 241, 0.08) 0%,
+            transparent 100%);
+    border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.review-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.review-title svg {
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 12px;
+    color: white;
+    box-sizing: content-box;
+}
+
+.review-close {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.review-close:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.5);
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+.review-close svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Stats Section */
+.review-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 24px 32px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .review-stats {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.review-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.review-stat:hover {
+    transform: translateY(-2px);
+}
+
+.review-stat svg {
+    width: 28px;
+    height: 28px;
+    padding: 10px;
+    border-radius: 14px;
+    box-sizing: content-box;
+}
+
+.review-stat span:nth-child(2) {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.review-stat span:nth-child(3) {
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.review-stat.correct {
+    background: linear-gradient(145deg,
+            rgba(16, 185, 129, 0.15),
+            rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: #10b981;
+}
+
+.review-stat.correct svg {
+    background: rgba(16, 185, 129, 0.2);
+}
+
+.review-stat.wrong {
+    background: linear-gradient(145deg,
+            rgba(239, 68, 68, 0.15),
+            rgba(244, 63, 94, 0.1));
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #ef4444;
+}
+
+.review-stat.wrong svg {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.review-stat.skipped {
+    background: linear-gradient(145deg,
+            rgba(245, 158, 11, 0.15),
+            rgba(234, 179, 8, 0.1));
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: #f59e0b;
+}
+
+.review-stat.skipped svg {
+    background: rgba(245, 158, 11, 0.2);
+}
+
+/* Sections Nav */
+.review-sections-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 32px;
+    background: rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .review-sections-nav {
+    background: rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.review-nav-btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+}
+
+[data-theme="light"] .review-nav-btn {
+    background: rgba(0, 0, 0, 0.02);
+    border: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.review-nav-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+}
+
+.review-nav-btn.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-color: transparent;
+    color: white;
+    box-shadow:
+        0 8px 25px rgba(99, 102, 241, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Review Container */
+.review-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 28px 32px;
+    scroll-behavior: smooth;
+}
+
+.review-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.review-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.review-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    border-radius: 4px;
+}
+
+.review-container h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--primary-light);
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+}
+
+/* Question Cards */
+.review-question {
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="light"] .review-question {
+    background: rgba(0, 0, 0, 0.02);
+    border: 2px solid rgba(0, 0, 0, 0.06);
+}
+
+.review-question::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.review-question.correct {
+    border-color: rgba(16, 185, 129, 0.35);
+    background: linear-gradient(145deg,
+            rgba(16, 185, 129, 0.06),
+            rgba(6, 182, 212, 0.03));
+}
+
+.review-question.correct::before {
+    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+    opacity: 0.15;
+}
+
+.review-question.wrong {
+    border-color: rgba(239, 68, 68, 0.35);
+    background: linear-gradient(145deg,
+            rgba(239, 68, 68, 0.06),
+            rgba(244, 63, 94, 0.03));
+}
+
+.review-question.wrong::before {
+    background: radial-gradient(circle, #ef4444 0%, transparent 70%);
+    opacity: 0.15;
+}
+
+.review-question.skipped {
+    border-color: rgba(245, 158, 11, 0.35);
+    background: linear-gradient(145deg,
+            rgba(245, 158, 11, 0.06),
+            rgba(234, 179, 8, 0.03));
+}
+
+.review-question.skipped::before {
+    background: radial-gradient(circle, #f59e0b 0%, transparent 70%);
+    opacity: 0.15;
+}
+
+/* Question Header */
+.review-question-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.review-question-number {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.review-question.correct .review-question-number {
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+}
+
+.review-question.wrong .review-question-number {
+    background: linear-gradient(135deg, #ef4444, #f43f5e);
+}
+
+.review-question.skipped .review-question-number {
+    background: linear-gradient(135deg, #f59e0b, #eab308);
+}
+
+.review-question-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 100px;
+    margin-right: auto;
+}
+
+.review-question.correct .review-question-status {
+    background: linear-gradient(135deg,
+            rgba(16, 185, 129, 0.2),
+            rgba(6, 182, 212, 0.15));
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.review-question.wrong .review-question-status {
+    background: linear-gradient(135deg,
+            rgba(239, 68, 68, 0.2),
+            rgba(244, 63, 94, 0.15));
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.review-question.skipped .review-question-status {
+    background: linear-gradient(135deg,
+            rgba(245, 158, 11, 0.2),
+            rgba(234, 179, 8, 0.15));
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.review-question-status svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Question Text */
+.review-question-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 14px;
+    border-right: 4px solid var(--primary);
+}
+
+[data-theme="light"] .review-question-text {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+/* Answer Options */
+.review-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.review-answer-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+[data-theme="light"] .review-answer-item {
+    background: rgba(0, 0, 0, 0.02);
+    border: 2px solid rgba(0, 0, 0, 0.06);
+}
+
+.review-answer-item.correct-answer {
+    border-color: rgba(16, 185, 129, 0.5);
+    background: linear-gradient(135deg,
+            rgba(16, 185, 129, 0.12),
+            rgba(6, 182, 212, 0.08));
+}
+
+.review-answer-item.user-wrong {
+    border-color: rgba(239, 68, 68, 0.5);
+    background: linear-gradient(135deg,
+            rgba(239, 68, 68, 0.12),
+            rgba(244, 63, 94, 0.08));
+    opacity: 0.85;
+}
+
+.review-answer-item.user-wrong span:not(.review-answer-letter):not(.review-answer-label) {
+    text-decoration: line-through;
+    text-decoration-color: #ef4444;
+}
+
+.review-answer-letter {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+[data-theme="light"] .review-answer-letter {
+    background: rgba(0, 0, 0, 0.03);
+    border: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.review-answer-item.correct-answer .review-answer-letter {
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.review-answer-item.user-wrong .review-answer-letter {
+    background: linear-gradient(135deg, #ef4444, #f43f5e);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.review-answer-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 100px;
+    margin-right: auto;
+}
+
+.review-answer-label.your-answer {
+    background: linear-gradient(135deg,
+            rgba(99, 102, 241, 0.25),
+            rgba(139, 92, 246, 0.2));
+    color: var(--primary-light);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.review-answer-label.correct-label {
+    background: linear-gradient(135deg,
+            rgba(16, 185, 129, 0.25),
+            rgba(6, 182, 212, 0.2));
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Correct Answer Box */
+.review-correct-answer {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 16px;
+    padding: 18px 22px;
+    background: linear-gradient(135deg,
+            rgba(16, 185, 129, 0.1),
+            rgba(6, 182, 212, 0.06));
+    border: 2px solid rgba(16, 185, 129, 0.25);
+    border-radius: 16px;
+}
+
+.review-correct-answer svg {
+    width: 22px;
+    height: 22px;
+    color: #10b981;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.review-correct-answer span {
+    font-weight: 700;
+    color: #10b981;
+}
+
+.review-correct-answer .correct-text {
+    color: var(--text-primary);
+    font-weight: 500;
+    flex: 1;
+}
+
+/* User Answer Box */
+.review-user-answer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.review-user-answer .answer-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.review-user-answer .answer-label::before {
+    content: '';
+    width: 4px;
+    height: 16px;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+.review-user-answer .answer-content {
+    padding: 16px 20px;
+    background: rgba(99, 102, 241, 0.06);
+    border: 2px solid rgba(99, 102, 241, 0.15);
+    border-radius: 14px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.7;
+}
+
+/* Footer */
+.review-footer {
+    display: flex;
+    justify-content: center;
+    padding: 24px 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .review-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.review-footer .btn {
+    padding: 14px 36px;
+    font-size: 1rem;
+    border-radius: 14px;
+}
+
+/* ====== Responsive Design ====== */
+
+/* Tablets */
+@media (max-width: 900px) {
+    .review-modal {
+        padding: 24px;
+    }
+
+    .review-content {
+        border-radius: 20px;
+        max-height: calc(100vh - 48px);
+    }
+
+    .review-header,
+    .review-stats,
+    .review-sections-nav,
+    .review-container,
+    .review-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .review-stats {
+        gap: 12px;
+    }
+
+    .review-stat {
+        padding: 14px;
+    }
+
+    .review-stat span:nth-child(2) {
+        font-size: 1.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .review-modal {
+        padding: 0;
+        align-items: stretch;
+    }
+
+    .review-content {
+        max-height: 100%;
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .review-header {
+        padding: 14px 16px;
+        flex-shrink: 0;
+    }
+
+    .review-title {
+        font-size: 1.1rem;
+        gap: 10px;
+    }
+
+    .review-title svg {
+        width: 22px;
+        height: 22px;
+        padding: 5px;
+        border-radius: 8px;
+    }
+
+    .review-close {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+    }
+
+    .review-close svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .review-stats {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 12px 16px;
+        flex-shrink: 0;
+    }
+
+    .review-stat {
+        flex: 1;
+        padding: 10px 6px;
+        border-radius: 12px;
+        min-width: 0;
+    }
+
+    .review-stat svg {
+        width: 18px;
+        height: 18px;
+        padding: 5px;
+        border-radius: 8px;
+    }
+
+    .review-stat span:nth-child(2) {
+        font-size: 1.3rem;
+    }
+
+    .review-stat span:nth-child(3) {
+        font-size: 0.65rem;
+        white-space: nowrap;
+    }
+
+    .review-sections-nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 6px;
+        padding: 10px 16px;
+        flex-shrink: 0;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .review-nav-btn {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 10px;
+        font-size: 0.95rem;
+    }
+
+    .review-container {
+        flex: 1;
+        overflow-y: auto;
+        padding: 14px 16px;
+        min-height: 0;
+    }
+
+    .review-container h3 {
+        font-size: 1rem;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+    }
+
+    .review-question {
+        padding: 14px;
+        border-radius: 14px;
+        margin-bottom: 12px;
+    }
+
+    .review-question::before {
+        display: none;
+    }
+
+    .review-question-header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .review-question-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+
+    .review-question-status {
+        font-size: 0.75rem;
+        padding: 5px 10px;
+    }
+
+    .review-question-status svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .review-question-text {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        line-height: 1.6;
+        border-right-width: 3px;
+    }
+
+    .review-answers {
+        gap: 8px;
+    }
+
+    .review-answer-item {
+        padding: 10px 12px;
+        border-radius: 10px;
+        gap: 8px;
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+    }
+
+    .review-answer-letter {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+        border-radius: 8px;
+    }
+
+    .review-answer-label {
+        font-size: 0.65rem;
+        padding: 3px 6px;
+        margin-right: 0;
+        margin-left: auto;
+    }
+
+    .review-correct-answer {
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .review-correct-answer svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .review-user-answer {
+        margin-top: 12px;
+        gap: 8px;
+    }
+
+    .review-user-answer .answer-label {
+        font-size: 0.8rem;
+    }
+
+    .review-user-answer .answer-label::before {
+        width: 3px;
+        height: 14px;
+    }
+
+    .review-user-answer .answer-content {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+        border-radius: 10px;
+        line-height: 1.5;
+    }
+
+    .review-footer {
+        padding: 14px 16px;
+        flex-shrink: 0;
+        background: linear-gradient(180deg,
+                rgba(15, 23, 42, 0.95),
+                rgba(30, 41, 59, 0.98));
+        border-top: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    [data-theme="light"] .review-footer {
+        background: linear-gradient(180deg,
+                rgba(248, 250, 252, 0.95),
+                rgba(255, 255, 255, 0.98));
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .review-footer .btn {
+        width: 100%;
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .review-footer .btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+    .review-header {
+        padding: 12px 14px;
+    }
+
+    .review-title {
+        font-size: 1rem;
+    }
+
+    .review-stats {
+        padding: 10px 12px;
+        gap: 6px;
+    }
+
+    .review-stat {
+        padding: 8px 4px;
+    }
+
+    .review-stat svg {
+        width: 16px;
+        height: 16px;
+        padding: 4px;
+    }
+
+    .review-stat span:nth-child(2) {
+        font-size: 1.1rem;
+    }
+
+    .review-stat span:nth-child(3) {
+        font-size: 0.6rem;
+    }
+
+    .review-sections-nav {
+        padding: 8px 12px;
+        gap: 4px;
+    }
+
+    .review-nav-btn {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+        font-size: 0.85rem;
+    }
+
+    .review-container {
+        padding: 12px 14px;
+    }
+
+    .review-question {
+        padding: 12px;
+    }
+
+    .review-question-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+
+    .review-question-text {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+    }
+
+    .review-answer-item {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .review-answer-letter {
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
+    }
+
+    .review-footer {
+        padding: 12px 14px;
+    }
+
+    .review-footer .btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+}

@@ -833,6 +833,11 @@ function setActive(page) {
     state.activePage = clamp(page, 1, PAGES.length);
     renderList();
     renderActive();
+    // Smooth scroll to top of content
+    const heroElement = document.querySelector('.hero');
+    if (heroElement) {
+        heroElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
 function toggleDone() {

@@ -1565,7 +1565,7 @@ function renderReviewEssay(section, sectionId) {
                 
                 ${!hasAnswer ? `
                     <div style="padding: 16px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-md); color: #f59e0b; font-size: 0.9rem;">
-                        ⚠️ لم يتم الإجابة على هذا السؤال
+                         لم يتم الإجابة على هذا السؤال
                     </div>
                 ` : ''}
             </div>
@@ -1574,5 +1574,41 @@ function renderReviewEssay(section, sectionId) {
     return html;
 }
 
+/* ====== About Developer Popup ====== */
+function initDevPopup() {
+    const aboutDevBtn = document.getElementById("aboutDevBtn");
+    const devPopupOverlay = document.getElementById("devPopupOverlay");
+    const closeDevPopup = document.getElementById("closeDevPopup");
+
+    if (aboutDevBtn && devPopupOverlay) {
+        aboutDevBtn.addEventListener("click", () => {
+            // Close drawer first
+            closeDrawer();
+            // Show popup after short delay
+            setTimeout(() => {
+                devPopupOverlay.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }, 200);
+        });
+    }
+
+    if (closeDevPopup) {
+        closeDevPopup.addEventListener("click", () => {
+            devPopupOverlay.classList.remove("active");
+            document.body.style.overflow = "";
+        });
+    }
+
+    if (devPopupOverlay) {
+        devPopupOverlay.addEventListener("click", (e) => {
+            if (e.target === devPopupOverlay) {
+                devPopupOverlay.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+        });
+    }
+}
+
 // Start
 init();
+initDevPopup();

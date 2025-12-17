@@ -1,0 +1,229 @@
+/* ====== Developer Glass Popup ====== */
+.dev-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 99999;
+}
+
+.dev-popup-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dev-popup-card {
+    position: relative;
+    width: 280px;
+    min-height: 320px;
+    border-radius: 34px;
+    padding: 28px 24px;
+    background:
+        radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.35), transparent 50%),
+        rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        0 10px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    overflow: hidden;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dev-popup-overlay.active .dev-popup-card {
+    transform: scale(1) translateY(0);
+}
+
+.dev-popup-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.65),
+            rgba(255, 255, 255, 0.0));
+    opacity: 0.18;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.dev-popup-card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    opacity: 0.35;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+}
+
+.dev-popup-close {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 2;
+    transition: all 0.2s ease;
+}
+
+.dev-popup-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: rotate(90deg);
+}
+
+.dev-popup-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+}
+
+.dev-popup-avatar {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+.dev-popup-avatar svg {
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.dev-popup-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-bottom: 6px;
+}
+
+.dev-popup-name {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+}
+
+.dev-popup-subtitle {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-bottom: 16px;
+}
+
+.dev-popup-divider {
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    margin: 0 auto 16px;
+}
+
+.dev-popup-info {
+    font-size: 12px;
+    line-height: 1.7;
+    opacity: 0.85;
+    margin-bottom: 20px;
+}
+
+.dev-popup-info p {
+    margin: 0;
+}
+
+.dev-popup-social {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.dev-social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.dev-social-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dev-social-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Coming Soon Label */
+.dev-popup-coming-soon {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-top: 12px;
+    letter-spacing: 1px;
+}
+
+/* Light Mode - Clearer Text */
+[data-theme="light"] .dev-popup-content {
+    color: #1e293b;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="light"] .dev-popup-close {
+    background: rgba(0, 0, 0, 0.15);
+    color: #1e293b;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .dev-popup-close:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] .dev-popup-divider {
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.3), transparent);
+}
+
+[data-theme="light"] .dev-social-btn {
+    background: rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: #1e293b;
+}
+
+[data-theme="light"] .dev-social-btn:hover {
+    background: rgba(0, 0, 0, 0.15);
+}

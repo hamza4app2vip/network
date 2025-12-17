@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Glass Fitness Popup</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "SF Pro Text", "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 0% 0%, #4cff9160 0, transparent 45%),
+        radial-gradient(circle at 80% 90%, #0affd033 0, #000 60%);
+      color: #fff;
+      overflow: hidden;
+      padding: 40px 20px;
+    }
+
+    /* نص في الخلفية لتجربة الزجاجية */
+    .page-content {
+      position: relative;
+      max-width: 700px;
+      text-align: justify;
+      line-height: 1.9;
+      opacity: 0.95;
+      font-size: 16px;
+    }
+
+    .page-content h1 {
+      margin-bottom: 16px;
+      font-size: 32px;
+    }
+
+    /* زر فتح النافذة */
+    .open-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 24px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: #ffffff12;
+      color: #fff;
+      font-size: 14px;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* الخلفية المعتمة للنافذة المنبثقة مع BLUR حقيقي للنص */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(7px);           /* هنا الـ blur على النص */
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* الكرت الزجاجي */
+    .fitness-card {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      border-radius: 34px;
+      padding: 22px 20px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.26), transparent 55%),
+        rgba(255, 255, 255, 0.02);          /* شفاف جداً */
+      border: 1px solid rgba(255, 255, 255, 0.50);
+      box-shadow:
+        0 22px 55px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(40px) saturate(180%) brightness(1.4);
+      -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.4);
+      overflow: hidden;
+    }
+
+    /* لمعة ناعمة مثل الصورة */
+    .fitness-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.65),
+        rgba(255, 255, 255, 0.0)
+      );
+      opacity: 0.18;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    /* حافة داخلية خفيفة */
+    .fitness-card::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      opacity: 0.35;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+
+    .fitness-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .fitness-title {
+      font-size: 26px;
+      font-weight: 650;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+    }
+
+    .fitness-subtitle {
+      font-size: 11px;
+      opacity: 0.85;
+    }
+
+    /* زر إغلاق */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: none;
+      background: #ffffff22;
+      color: #fff;
+      cursor: pointer;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- محتوى تحت الكرت لاختبار الزجاجية -->
+  <div class="page-content">
+    <h1>نص تحت الكرت لاختبار الزجاجية</h1>
+    <p>
+      هذا نص تجريبي طويل يظهر خلف النافذة المنبثقة. عند فتح نافذة Fitness
+      يجب أن تلاحظ أن هذا النص أصبح ضبابياً (Blur) بسبب تأثير الزجاج،
+      سواء من خلف الخلفية الداكنة (overlay) أو خلف الكرت الزجاجي نفسه.
+      يمكنك تكرار هذا النص أو إضافة فقرات أكثر لتلاحظ التأثير بشكل أوضح.
+    </p>
+  </div>
+
+  <!-- زر عرض النافذة المنبثقة -->
+  <button class="open-btn" id="openPopup">إظهار نافذة Fitness الزجاجية</button>
+
+  <!-- النافذة المنبثقة -->
+  <div class="overlay" id="popup">
+    <div class="fitness-card">
+      <button class="close-btn" id="closePopup">&times;</button>
+
+      <div class="fitness-content">
+        <div class="fitness-title">Fitness</div>
+        <div class="fitness-subtitle">
+          Track. Train. Improve. Repeat.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById("openPopup");
+    const closeBtn = document.getElementById("closePopup");
+    const popup = document.getElementById("popup");
+
+    openBtn.addEventListener("click", () => {
+      popup.classList.add("active");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      popup.classList.remove("active");
+    });
+
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) popup.classList.remove("active");
+    });
+
+    // لو حاب تنفتح تلقائياً عند تحميل الصفحة:
+    // window.addEventListener("load", () => popup.classList.add("active"));
+  </script>
+</body>
+</html>

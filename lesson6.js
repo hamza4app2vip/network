@@ -838,6 +838,10 @@ function setActive(page) {
     if (heroElement) {
         heroElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+    // Check for celebration popup on last page
+    if (typeof checkAndCelebrate === 'function') {
+        checkAndCelebrate(state.activePage, PAGES.length);
+    }
 }
 
 function toggleDone() {

@@ -916,7 +916,25 @@ function renderActive() {
     el.nextBtn.disabled = state.activePage >= PAGES.length;
 
     const done = state.done.has(p.page);
-    el.markBtn.textContent = done ? "✓ هذه الصفحة مفهومة" : "✔︎ علّمها 'مفهومة'";
+    if (done) {
+        el.markBtn.style.display = 'none';
+        let checkEl = document.getElementById('markDoneCheck');
+        if (!checkEl) {
+            checkEl = document.createElement('div');
+            checkEl.id = 'markDoneCheck';
+            checkEl.className = 'mark-done-check';
+            checkEl.innerHTML = '<span class="check-icon">✓</span><span>تم الفهم</span>';
+            checkEl.style.cursor = 'pointer';
+            checkEl.addEventListener('click', toggleDone);
+            el.markBtn.parentNode.insertBefore(checkEl, el.markBtn);
+        }
+        checkEl.style.display = 'flex';
+    } else {
+        el.markBtn.style.display = '';
+        el.markBtn.textContent = "✔︎ علّمها 'مفهومة'";
+        const checkEl = document.getElementById('markDoneCheck');
+        if (checkEl) checkEl.style.display = 'none';
+    }
 }
 
 /* ====== Actions ====== */
